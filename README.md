@@ -1,7 +1,7 @@
 # Movies explorer
 SPA - приложение для поиска и сохранения фильмов в профиль, фронтенд-часть дипломного проекта студента WEB-Факультета Яндекс Практикума
 
-* пулл реквест:
+* пулл реквест: https://github.com/forestpk13/movies-explorer-frontend/pull/1
 * ссылка на макет: https://disk.yandex.ru/d/Dljivi7rFnbzaw
 * проект на сервере: https://forestpk13.nomoredomains.work/
 * api: https://api.forestpk13.nomoredomains.work/
