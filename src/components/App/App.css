@@ -1,0 +1,26 @@
+.page {
+  background-color: var(--bgcolor-main);
+  min-height: 100vh;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  min-width: 305px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-popup {
+  min-width: 300px;
+  max-width: 60%;
+  background-color: #fff;
+  padding: 10px;
+  position: fixed;
+  bottom: -100%;
+  border-radius: 5px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.5);
+  transition: bottom .2s ease;
+  font-size: 12px;
+}
+
+.error-popup_visible {
+  bottom: 50px;
+}

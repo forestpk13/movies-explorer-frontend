@@ -1,0 +1,17 @@
+@import url(./vendor/fonts/fonts.css);
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bgcolor-main: #fff;
+  --bgcolor-dark: #F5F5F5;
+  --textcolor-main: #000;
+  --bgcolor-action: #2BE080;
+  --max-section-width: 1280px;
+  --bgcolor-buttons: #3456F3;
+  --error-color: #FF3055;
+}

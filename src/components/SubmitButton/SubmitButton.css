@@ -1,0 +1,42 @@
+.submit-button {
+  color: #FFF;
+  background-color: var(--bgcolor-buttons);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  padding: 13px 13px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  letter-spacing: 0.82px;
+}
+
+.submit-button:hover {
+  opacity: .7;
+}
+
+.submit-button:active {
+  transform: scale(.99, .98);
+}
+
+.submit-button:disabled {
+  background-color: transparent;
+  cursor: not-allowed;
+  outline: 1px solid #A0A0A0;
+  color: #A0A0A0;
+  opacity: .5;
+  box-shadow: 0 0 10px #A0A0A0
+}
+
+.submit-button:disabled:active {
+  transform: none;
+}
+
+@media screen and (max-width: 450px) {
+  .submit-button {
+    padding: 15px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
