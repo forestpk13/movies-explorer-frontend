@@ -378,6 +378,7 @@ function App() {
             {isPageWithHeader && <Header />}
             <Routes>
               <Route path='/' element={<Landing />} />
+              <Route element={<ConditionalRoutes condition={!loggedIn} redirectPath='/movies' />}>
                 <Route
                   path='/signin'
                   element={
@@ -397,6 +398,8 @@ function App() {
                     />
                   }
                 />
+                </Route>
+                <Route element={<ConditionalRoutes condition={loggedIn} redirectPath='/' />} >
                 <Route
                   path='/profile'
                   element={
@@ -439,6 +442,7 @@ function App() {
                   }
                 />
                 <Route path='*' element={<PageNotFound />} />
+              </Route>
             </Routes>
             {isPageWithFooter && <Footer />}
             <div className={`error-popup ${popupErrorOpen && 'error-popup_visible'}`}>
