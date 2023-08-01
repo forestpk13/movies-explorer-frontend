@@ -15,7 +15,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "scp -r ./build/* forestpk13@130.193.50.153:/home/forestpk13/movies-frontend",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
