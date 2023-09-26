@@ -1,0 +1,37 @@
+.banner {
+  background-color: #073042;
+  height: 574px;
+  width: 100%;
+  padding: 75px 70px 0 70px;
+  box-sizing: border-box;
+}
+
+.banner__inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.banner__description-container{
+  max-width: 640px;
+}
+
+.banner__title {
+  color: var(--textcolor-light);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 50px;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: 1.16;
+}
+
+.banner__description {
+  color: var(--textcolor-light);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.5;
+  max-width: 310px;
+}

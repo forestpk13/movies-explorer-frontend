@@ -3,15 +3,16 @@
 body {
   margin: 0;
   padding: 0;
-  -webkit-tap-highlight-color: transparent;
+  background-color: var(--bgcolor-main);
 }
 
 :root {
-  --bgcolor-main: #fff;
-  --bgcolor-dark: #F5F5F5;
-  --textcolor-main: #000;
-  --bgcolor-action: #2BE080;
-  --max-section-width: 1280px;
-  --bgcolor-buttons: #3456F3;
-  --error-color: #FF3055;
+  --bgcolor-main: #202020;
+  --bgcolor-light: #272727;
+  --bgcolor-action: #3DDC84;
+  --bgcolor-buttons: #4285F4;
+  --textcolor-light: #FFF;
+  --textcolor-grey: #8B8B8B;
+  --textcolor-dark: #000;
+  --error-color: #EE3465;
 }

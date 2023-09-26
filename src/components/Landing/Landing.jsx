@@ -1,18 +1,9 @@
-import AboutProject from '../AboutProject/AboutProject';
-import Promo from '../Promo/Promo';
-import Techs from '../Techs/Techs';
-import AboutMe from '../AboutMe/AboutMe';
-import Portfolio from '../Portfolio/Portfolio';
-import './Landing.css'
+import Banner from "../Banner/Banner";
 
-const Landing = () => {
+function Landing() {
   return (
     <main className='landing'>
-      <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
+      <Banner/>
     </main>
   )
 };
