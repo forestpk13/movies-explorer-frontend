@@ -2,20 +2,24 @@
   background-color: #073042;
   height: 574px;
   width: 100%;
-  padding: 75px 70px 0 70px;
+  padding: 70px 70px 0 70px;
   box-sizing: border-box;
 }
 
 .banner__inner {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .banner__description-container{
   max-width: 640px;
+  padding-top: 0;
 }
 
 .banner__title {
+  margin: 0;
+  margin-bottom: 36px;
   color: var(--textcolor-light);
   font-feature-settings: 'clig' off, 'liga' off;
   font-size: 50px;
@@ -25,6 +29,8 @@
 }
 
 .banner__description {
+  margin: 0;
+  margin-bottom: 146px;
   color: var(--textcolor-light);
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: Inter;
@@ -34,4 +40,18 @@
   line-height: normal;
   opacity: 0.5;
   max-width: 310px;
+}
+
+.banner__nav-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  text-decoration: none;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.33;
 }
