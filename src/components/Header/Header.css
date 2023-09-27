@@ -1,0 +1,12 @@
+.header {
+  margin: 0;
+}
+
+.header__auth-links {
+  margin: 0;
+  padding: 0;
+}
+
+.header_page_main {
+  background-color: #073042;
+}
