@@ -1,6 +1,6 @@
 .banner {
   background-color: #073042;
-  height: 574px;
+  min-height: 574px;
   width: 100%;
   padding: 70px 70px 0 70px;
   box-sizing: border-box;
@@ -54,4 +54,61 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.33;
+}
+
+@media screen and (max-width: 1024px) {
+  .banner {
+    padding-top: 140px;
+    padding-bottom: 76px;
+  }
+
+  .banner__inner {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .banner__description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 680px;
+  }
+
+  .banner__title {
+    margin-top: 48px;
+    margin-bottom: 22px;
+    text-align: center;
+    font-size: 40px;
+  }
+
+  .banner__description {
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 92px;
+    max-width: 260px;
+  }
+}
+
+@media screen and (max-width: 549px) {
+  .banner {
+    padding: 70px 0 30px 0;
+  }
+
+  .banner__title {
+    font-size: 30px;
+    max-width: 300px;
+    line-height: 1.26;
+    letter-spacing: -1.2px;
+    margin-top: 44px;
+    margin-bottom: 24px;
+  }
+
+  .banner__description {
+    margin-bottom: 80px;
+  }
+
+  .banner__image {
+    width: 210px;
+    height: 206px;
+  }
 }
