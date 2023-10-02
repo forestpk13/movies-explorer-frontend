@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import './Header.css';
 
 function Header() {
   let location = useLocation();
   const [isMainPageHeader, setIsMainPageHeader] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const switchHeaderBackToBlue = () => {
     setIsMainPageHeader(true);
@@ -31,12 +33,13 @@ function Header() {
 
 
   return (
-    <header className={`header' ${isMainPageHeader ? 'header_page_main' : ''}`}>
+    <header className={`header ${isMainPageHeader ? 'header_page_main' : ''}`}>
       <Link
         className='header__logo'
         to='/'
         title='На главную'
         />
+      <Navbar isVisible={loggedIn}/>
       <nav className='header__auth'>
         <ul className='header__auth-links'>
           <li>
