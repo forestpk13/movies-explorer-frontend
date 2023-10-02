@@ -4,8 +4,8 @@ import './AboutDiploma.css';
 function AboutDiploma() {
   return (
     <section className='about-diploma' id='about-diploma'>
+      <SectionTitle title='О проекте'/>
       <div className='about-diploma__inner'>
-        <SectionTitle title='О проекте'/>
         <ul className='about-diploma__articles'>
           <li className="about-diploma__article">
             <h3 className="about-diploma__article-title">
