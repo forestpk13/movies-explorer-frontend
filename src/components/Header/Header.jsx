@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -26,7 +27,7 @@ function Header() {
     }
   }
 
-  //При смене url, на какой странице находится пользователь, и выставляем нужный цвет фона
+  //При смене url проверяем, на какой странице находится пользователь, и выставляем нужный цвет фона
   useEffect(() => {
     checkCurrentPage();
   }, [location.pathname]);

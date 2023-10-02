@@ -1,0 +1,147 @@
+.about-diploma {
+  padding: 106px 70px;
+}
+
+.about-diploma__articles {
+  list-style-type: none;
+  margin: 70px 0 110px 0;
+  padding: 0;
+  display: flex;
+  gap: 40px;
+}
+
+.about-diploma__article {
+  max-width: 550px;
+}
+
+.about-diploma__article-title {
+  margin: 0 0 26px 0;
+  color: var(--textcolor-light);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.about-diploma__article-text {
+  margin: 0;
+  color: var(--textcolor-light);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.42;
+}
+
+.about-diploma__milestones {
+  width: 100%;
+  max-width: 1140px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.about-diploma__milestone {
+  width: 20%;
+}
+
+.about-diploma__milestone_stage_last {
+  width: 80%;
+}
+
+.about-diploma__milestone-title {
+  margin: 0;
+  padding: 9px 0;
+  background-color: var(--bgcolor-action);
+  color: var(--textcolor-dark);
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.about-diploma__milestone-title_stage_last {
+  background-color: #303030;
+  color: var(--textcolor-light);
+}
+
+.about-diploma__milestone-description {
+  color: var(--textcolor-grey);
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.21;
+}
+
+@media screen and (max-width: 768px) {
+  .about-diploma {
+    padding: 90px 50px;
+  }
+
+  .about-diploma__articles {
+    margin-bottom: 93px;
+  }
+
+  .about-diploma__article-title {
+    margin-bottom: 22px;
+  }
+
+  .about-diploma__article-text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .about-diploma__milestone {
+    width: 21%;
+  }
+
+  .about-diploma__milestone_stage_last {
+    width: 79%;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .about-diploma {
+    padding: 70px 18px;
+  }
+
+  .about-diploma__articles {
+    margin: 65px 0 60px 0;
+    gap: 56px;
+    flex-direction: column;
+  }
+
+  .about-diploma__article-title {
+    margin-bottom: 18px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about-diploma__article-text {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .about-diploma__milestone {
+    width: 35.5%;
+  }
+
+  .about-diploma__milestone_stage_last {
+    width: 64.5%;
+  }
+
+  .about-diploma__milestone-title {
+    font-size: 11px;
+  }
+
+  .about-diploma__milestone-description  {
+    font-size: 11px;
+  }
+}

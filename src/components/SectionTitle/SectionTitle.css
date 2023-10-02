@@ -1,0 +1,23 @@
+.section-title {
+  margin: 0 0 23px 0;
+  color: var(--textcolor-light);
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+}
+
+.section-title__underline {
+  width: 100%;
+  max-width: 1140px;
+  border-bottom: 1px solid #DADADA;
+}
+
+@media screen and (max-width: 580px) {
+  .section-title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+}
