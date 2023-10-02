@@ -1,6 +1,7 @@
 import Banner from "../Banner/Banner";
 import AboutDiploma from "../AboutDiploma/AboutDiploma";
 import Technologies from "../Technologies/Technologies";
+import Student from "../Student/Student";
 
 function Landing() {
   return (
@@ -8,6 +9,7 @@ function Landing() {
       <Banner />
       <AboutDiploma />
       <Technologies />
+      <Student />
     </main>
   )
 };

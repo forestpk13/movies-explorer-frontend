@@ -1,0 +1,153 @@
+.student {
+  padding: 113px 70px 96px 70px;
+}
+
+.student__bio {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 65px;
+}
+
+.student__about-container {
+  max-width: 600px;
+}
+
+.student__name {
+  margin: 0;
+  color: var(--textcolor-light);
+  font-family: Inter;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.16; /* 116% */
+  letter-spacing: -2px;
+}
+
+.student__occupation {
+  margin: 19px 0 0 0;
+  color: var(--textcolor-light);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.11;
+}
+
+.student__description {
+  margin: 25px 0 0 0;
+  color: var(--textcolor-light);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.57;
+}
+
+.student__repo-link {
+  display: block;
+  margin-top: 99px;
+  text-decoration: none;
+  color: var(--textcolor-light);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.student__photo {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1090px) {
+  .student__about-container {
+    max-width: 450px;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .student__about-container {
+    max-width: 364px;
+  }
+
+  .student__photo {
+    width: 255px;
+    height: 307px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .student {
+    padding: 93px 50px 77px 50px;
+  }
+
+  .student__name {
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -1.6px;
+  }
+
+  .student__occupation{
+    margin-top: 16px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .student__description {
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .student__repo-link {
+    margin-top: 87px;
+  }
+}
+
+@media screen and (max-width: 746px) {
+  .student {
+    padding: 80px 14px;
+  }
+
+  .student__bio {
+    flex-direction: column-reverse;
+  }
+
+  .student__about-container {
+    max-width: 600px;
+  }
+
+  .student__photo {
+    width: 292px;
+    height: 352px;
+  }
+
+  .student__name {
+    margin-top: 43px;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .student__occupation {
+    margin-top: 23px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .student__description {
+    margin-top: 21px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .student__repo-link {
+    margin-top: 39px;
+    font-size: 14px;
+  }
+}
