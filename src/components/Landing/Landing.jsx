@@ -2,6 +2,7 @@ import Banner from "../Banner/Banner";
 import AboutDiploma from "../AboutDiploma/AboutDiploma";
 import Technologies from "../Technologies/Technologies";
 import Student from "../Student/Student";
+import Projects from "../Projects/Projects";
 
 function Landing() {
   return (
@@ -10,6 +11,7 @@ function Landing() {
       <AboutDiploma />
       <Technologies />
       <Student />
+      <Projects />
     </main>
   )
 };

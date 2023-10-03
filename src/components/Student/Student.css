@@ -1,5 +1,5 @@
 .student {
-  padding: 113px 70px 96px 70px;
+  padding: 113px 70px 100px 70px;
 }
 
 .student__bio {
@@ -112,7 +112,7 @@
 
 @media screen and (max-width: 746px) {
   .student {
-    padding: 80px 14px;
+    padding: 80px 14px 70px 14px;
   }
 
   .student__bio {
