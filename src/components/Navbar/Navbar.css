@@ -31,6 +31,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 1.38;
+  height: 26px;
 }
 
 .navbar__link {
@@ -46,6 +47,20 @@
 
 .navbar__link_active {
   font-weight: 500;
+}
+
+.navbar__profile-icon {
+  border-radius: 50px;
+  background-color:rgba(248, 248, 248, 0.1);
+  padding: 8px;
+  width: 10px;
+  height: 10px;
+}
+
+.navbar__link_resolution_desktop {
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
 .navbar__links-item_resolution_mobile {

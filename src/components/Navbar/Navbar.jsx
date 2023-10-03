@@ -1,4 +1,5 @@
 import { NavLink, Link } from 'react-router-dom';
+import profileIcon from '../../images/profile_icon.svg'
 import './Navbar.css';
 
 function Navbar ({ isVisible, onClose }) {
@@ -35,6 +36,7 @@ function Navbar ({ isVisible, onClose }) {
         </ul>
         <Link className='navbar__link navbar__link_resolution_desktop' to='/profile' onClick={onClose}>
           Аккаунт
+          <img src={profileIcon} className='navbar__profile-icon' alt='Иконка профиля'></img>
         </Link>
       </nav>
     </div>

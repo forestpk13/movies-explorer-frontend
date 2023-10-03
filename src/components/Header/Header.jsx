@@ -8,7 +8,7 @@ import './Header.css';
 function Header() {
   let location = useLocation();
   const [isMainPageHeader, setIsMainPageHeader] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const switchHeaderBackToBlue = () => {
     setIsMainPageHeader(true);
