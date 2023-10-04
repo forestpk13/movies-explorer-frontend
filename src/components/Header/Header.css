@@ -47,7 +47,7 @@
 }
 
 .header__auth {
- display: none;
+ display: flex;
 }
 
 .header__auth-links {
