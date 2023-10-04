@@ -56,6 +56,11 @@
   line-height: 1.33;
 }
 
+.banner__nav-button:hover {
+  opacity: .7;
+}
+
+
 @media screen and (max-width: 1024px) {
   .banner {
     padding-top: 140px;

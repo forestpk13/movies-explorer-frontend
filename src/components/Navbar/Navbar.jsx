@@ -34,7 +34,7 @@ function Navbar ({ isVisible, onClose }) {
             </NavLink>
           </li>
         </ul>
-        <Link className='navbar__link navbar__link_resolution_desktop' to='/profile' onClick={onClose}>
+        <Link className='navbar__link navbar__link_type_profile' to='/profile' onClick={onClose}>
           Аккаунт
           <img src={profileIcon} className='navbar__profile-icon' alt='Иконка профиля'></img>
         </Link>

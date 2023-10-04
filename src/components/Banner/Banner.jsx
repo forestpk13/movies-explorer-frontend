@@ -9,7 +9,7 @@ function Banner() {
         <div className='banner__description-container'>
           <h1 className='banner__title'>Учебный проект студента факультета Веб&#8209;разработки.</h1>
           <p className='banner__description'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
-          <a href='#' className='banner__nav-button'>Узнать больше</a>
+          <a href='#about-diploma' className='banner__nav-button'>Узнать больше</a>
         </div>
         <img src={poster} alt='Планета из облака тегов' className='banner__image'></img>
       </div>

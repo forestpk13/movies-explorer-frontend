@@ -8,6 +8,7 @@ import './Header.css';
 function Header() {
   let location = useLocation();
   const [isMainPageHeader, setIsMainPageHeader] = useState(false);
+  const [isBurgerOpened, setIsBurgerOpened] = useState(true);
   const [loggedIn, setLoggedIn] = useState(true);
 
   const switchHeaderBackToBlue = () => {
@@ -32,6 +33,13 @@ function Header() {
     checkCurrentPage();
   }, [location.pathname]);
 
+  const openBurger = () => {
+    setIsBurgerOpened(state => !state);
+  };
+
+  const closeBurger = () => {
+    setIsBurgerOpened(false);
+  }
 
   return (
     <header className={`header ${isMainPageHeader ? 'header_page_main' : ''}`}>
@@ -40,7 +48,12 @@ function Header() {
         to='/'
         title='На главную'
         />
-      <Navbar isVisible={loggedIn}/>
+      <button
+          className={`header__burger ${isBurgerOpened ? 'header__burger_opened' : ''}`}
+          type='button'
+          onClick={openBurger}
+      />
+      <Navbar isVisible={isBurgerOpened} onClose={closeBurger}/>
       <nav className='header__auth'>
         <ul className='header__auth-links'>
           <li>

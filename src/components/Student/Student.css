@@ -57,6 +57,10 @@
   line-height: normal;
 }
 
+.student__repo-link:hover {
+  opacity: .7;
+}
+
 .student__photo {
   width: 270px;
   height: 327px;
