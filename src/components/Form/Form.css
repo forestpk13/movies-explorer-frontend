@@ -1,0 +1,35 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.form__fields {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.form__submit-button {
+  margin-top: 69px;
+  width: 100%;
+  border-radius: 3px;
+  padding: 14px 0;
+  background-color: var(--bgcolor-buttons);
+  color: var(--textcolor-light);
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+}
+
+@media screen and (max-width: 500px) {
+  .form__submit-button {
+    font-size: 12px;
+  }
+}

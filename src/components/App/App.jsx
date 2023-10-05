@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Landing from '../Landing/Landing';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import {
   pagesWithHeader,
@@ -24,6 +25,7 @@ function App() {
             {isPageWithHeader && <Header />}
             <Routes>
               <Route path='/' element={<Landing />} />
+              <Route path='/signup' element={<Register />} />
               <Route path='*' element={<PageNotFound />} />
             </Routes>
             {isPageWithFooter && <Footer />}
