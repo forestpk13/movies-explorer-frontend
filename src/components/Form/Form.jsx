@@ -4,7 +4,7 @@ import useValidationOfForm from '../../utils/hooks/useValidationOfForm';
 import './Form.css';
 
 
-function Form({ page }) {
+function Form({ onSubmit, page }) {
   const {
     values,
     errors,
@@ -21,8 +21,13 @@ function Form({ page }) {
 
   let isRegisterPage = page === 'register' ? true : false;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(values);
+  }
+
   return (
-    <form className={`form`}>
+    <form className={`form`} onSubmit={handleSubmit}>
       <fieldset className='form__fields'>
       {isRegisterPage && <FormInput
         value={values.name}

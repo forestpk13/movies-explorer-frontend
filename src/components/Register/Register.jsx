@@ -1,7 +1,7 @@
 import UserPage from '../UserPage/UserPage';
 import Form from '../Form/Form';
 
-function Register() {
+function Register({ onSubmit }) {
   const texts = {
     heading: 'Добро пожаловать!',
     caption: 'Уже зарегистрированы?',
@@ -11,7 +11,7 @@ function Register() {
   return (
     <main className='register'>
       <UserPage texts={texts}>
-        <Form page='register' />
+        <Form onSubmit={onSubmit} page='register' />
       </UserPage>
     </main>
   );

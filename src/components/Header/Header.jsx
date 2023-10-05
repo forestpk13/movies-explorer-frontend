@@ -10,8 +10,7 @@ function Header() {
   const currentUser = useContext(CurrentUserContext);
   let location = useLocation();
   const [isMainPageHeader, setIsMainPageHeader] = useState(false);
-  const [isBurgerOpened, setIsBurgerOpened] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [isBurgerOpened, setIsBurgerOpened] = useState(false);
 
   const switchHeaderBackToBlue = () => {
     setIsMainPageHeader(true);

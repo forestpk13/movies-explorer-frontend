@@ -1,6 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import Landing from '../Landing/Landing';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -13,26 +12,36 @@ import {
 } from '../../utils/constants'
 
 import './App.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+
   const location = useLocation().pathname;
+  const navigate = useNavigate();
 
   const isPageWithHeader = pagesWithHeader.includes(location);
   const isPageWithFooter = pagesWithFooter.includes(location);
 
+  const handleRegister = (user) => {
+    navigate('/movies');
+    setCurrentUser(user);
+    console.log(user);
+  }
+
   return (
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-          <>
             {isPageWithHeader && <Header />}
             <Routes>
               <Route path='/' element={<Landing />} />
-              <Route path='/signup' element={<Register />} />
+              <Route path='/signup' element={<Register onSubmit={handleRegister} />} />
               <Route path='/signin' element={<Login />} />
               <Route path='*' element={<PageNotFound />} />
             </Routes>
             {isPageWithFooter && <Footer />}
-          </>
       </div>
+      </CurrentUserContext.Provider>
   );
 }
 
