@@ -19,10 +19,12 @@ function Form({ page }) {
       text: 'Зарегистрироваться',
     };
 
+  let isRegisterPage = page === 'register' ? true : false;
+
   return (
     <form className={`form`}>
       <fieldset className='form__fields'>
-      <FormInput
+      {isRegisterPage && <FormInput
         value={values.name}
         error={errors.name}
         onChange={onChange}
@@ -31,7 +33,7 @@ function Form({ page }) {
         type='text'
         required
         minLength='3'
-      />
+      />}
       <FormInput
         value={values.email}
         error={errors.email}

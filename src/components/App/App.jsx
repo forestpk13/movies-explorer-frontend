@@ -5,6 +5,7 @@ import Landing from '../Landing/Landing';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import {
   pagesWithHeader,
@@ -26,6 +27,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Landing />} />
               <Route path='/signup' element={<Register />} />
+              <Route path='/signin' element={<Login />} />
               <Route path='*' element={<PageNotFound />} />
             </Routes>
             {isPageWithFooter && <Footer />}

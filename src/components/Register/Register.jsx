@@ -11,7 +11,7 @@ function Register() {
   return (
     <main className='register'>
       <UserPage texts={texts}>
-        <Form type='register' />
+        <Form page='register' />
       </UserPage>
     </main>
   );
