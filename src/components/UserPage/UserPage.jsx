@@ -3,16 +3,19 @@ import './UserPage.css'
 
 function UserPage({
   children,
-  texts
+  texts,
+  page
 }) {
+  let isProfilePage = page === 'profile' ? true : false;
+
   return (
-    <div className='user-page'>
-      <Link className='user-page__logo' to='/' />
-      <h1 className='user-page__heading'>{texts.heading}</h1>
+    <div className={`user-page ${isProfilePage && 'user-page_page_profile'}`}>
+      {!isProfilePage && <Link className='user-page__logo' to='/' />}
+      <h1 className={`user-page__heading ${isProfilePage && 'user-page__heading_page_profile'}`}>{texts.heading}</h1>
       {children}
       <div className='user-page__caption'>
-          <p className='user-page__caption-text'>{texts.caption}</p>
-          <Link className='user-page__link' to={'/signin'}>{texts.buttonText}</Link>
+          {!isProfilePage && <p className='user-page__caption-text '>{texts.caption}</p>}
+          <Link className={`user-page__link ${isProfilePage && 'user-page__link_page_profile'}`} to={'/signin'}>{texts.buttonText}</Link>
       </div>
     </div>
   );

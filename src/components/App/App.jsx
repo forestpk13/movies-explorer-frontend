@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import {
   pagesWithHeader,
@@ -37,6 +38,7 @@ function App() {
               <Route path='/' element={<Landing />} />
               <Route path='/signup' element={<Register onSubmit={handleRegister} />} />
               <Route path='/signin' element={<Login />} />
+              <Route path='/profile' element={<Profile />} />
               <Route path='*' element={<PageNotFound />} />
             </Routes>
             {isPageWithFooter && <Footer />}

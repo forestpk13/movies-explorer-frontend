@@ -12,6 +12,11 @@
   padding: 0;
 }
 
+.form__button-container {
+  display: flex;
+  justify-content: space-around;
+}
+
 .form__submit-button {
   margin-top: 69px;
   width: 100%;
@@ -26,6 +31,20 @@
   font-weight: 500;
   line-height: normal;
   border: none;
+}
+
+.form__submit-button:hover {
+  opacity: .7;
+}
+
+
+.form__submit-button_page_profile {
+  width: fit-content;
+  cursor: pointer;
+  background: none;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 0;
 }
 
 @media screen and (max-width: 500px) {

@@ -10,7 +10,7 @@ function Register({ onSubmit }) {
 
   return (
     <main className='register'>
-      <UserPage texts={texts}>
+      <UserPage texts={texts} page='register'>
         <Form onSubmit={onSubmit} page='register' />
       </UserPage>
     </main>

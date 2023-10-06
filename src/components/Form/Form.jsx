@@ -20,6 +20,7 @@ function Form({ onSubmit, page }) {
     };
 
   let isRegisterPage = page === 'register' ? true : false;
+  let isProfilePage = page === 'profile' ? true : false;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,13 +30,14 @@ function Form({ onSubmit, page }) {
   return (
     <form className={`form`} onSubmit={handleSubmit}>
       <fieldset className='form__fields'>
-      {isRegisterPage && <FormInput
+      {{isRegisterPage, isProfilePage} && <FormInput
         value={values.name}
         error={errors.name}
         onChange={onChange}
         name='name'
         title='Имя'
         type='text'
+        isProfilePage={isProfilePage}
         required
         minLength='3'
       />}
@@ -46,23 +48,25 @@ function Form({ onSubmit, page }) {
         name='email'
         title='E-mail'
         type='email'
+        isProfilePage={isProfilePage}
         pattern={EMAIL_REGEXP}
         required
       />
-      <FormInput
+      {!isProfilePage && <FormInput
         value={values.password}
         error={errors.password}
         onChange={onChange}
         name='password'
         title='Пароль'
         type='password'
+        isProfilePage={isProfilePage}
         minLength='6'
         required
-      />
+      />}
 
       </fieldset>
       <div className='form__button-container'>
-          <button className='form__submit-button' type='submit' disabled={!isValid}>{buttonTextCheck.text}</button>
+          <button className={`form__submit-button ${isProfilePage && 'form__submit-button_page_profile'}`} type='submit' disabled={!isValid}>{isProfilePage ? 'Редактировать' : buttonTextCheck.text}</button>
       </div>
     </form>
   )

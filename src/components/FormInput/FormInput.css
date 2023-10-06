@@ -1,18 +1,23 @@
+.form-input_page_profile {
+  border-bottom: solid 1px #424242;
+  margin-bottom: 16px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, fit-content);
+  grid-template-rows: 14px 17px;
+  grid-template-areas:
+    "label input"
+    "error error"
+;
+}
+
+.form-input_page_profile:last-of-type {
+  border: none;
+}
+
 .form-input__input {
   display: flex;
   flex-direction: column;
-}
-
-.form-input__title {
-  color: var(--textcolor-grey);
-  font-family: Inter;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.form-input__input {
   box-sizing: border-box;
   width: 100%;
   border: none;
@@ -28,12 +33,36 @@
   margin-top: 7px;
 }
 
+.form-input__input_page_profile {
+  background: none;
+  grid-area: input;
+  width: 100%;
+  text-align: right;
+  padding: 0;
+  font-size: 11px;
+}
+
 .form-input__input:focus {
   outline: none;
 }
 
 .form-input__input-with-error {
   color: #EE3465;
+}
+
+.form-input__title {
+  color: var(--textcolor-grey);
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.form-input__title_page_profile {
+  font-size: 11px;
+  grid-area: label;
+  color: var(--textcolor-light);
 }
 
 .form-input__error-message {
@@ -48,4 +77,12 @@
   line-height: 1;
   min-height: 19px;
   display: block;
+}
+
+.form-input__error-message_page_profile {
+  grid-area: error;
+}
+
+@media screen and (max-width: 768px) {
+  
 }
