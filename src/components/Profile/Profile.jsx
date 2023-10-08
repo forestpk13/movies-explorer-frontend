@@ -6,7 +6,7 @@ import UserPage from '../UserPage/UserPage';
 function Profile({ onSubmit }) {
   const currentUser = useContext(CurrentUserContext);
   const texts = {
-    heading: `Привет, Виталий!`,
+    heading: `Привет, !`,
     buttonText: 'Выйти из аккаунта'
   }
 
