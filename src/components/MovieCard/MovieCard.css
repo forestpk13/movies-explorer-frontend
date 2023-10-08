@@ -1,0 +1,103 @@
+.movie-card {
+  width: 270px;
+  height: 218px;
+  background-color: #222;
+  border-radius: 10px;
+  filter: drop-shadow(0px 16px 24px rgba(0, 0, 0, 0.05));
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: auto 50px;
+  grid-template-areas:
+    'image image'
+    'title button'
+    'duration button';
+}
+
+.movie-card__poster-container {
+  grid-area: image;
+  height: 151px;
+}
+
+.movie-card__poster-container:hover {
+  opacity: .7;
+}
+
+.movie-card__poster {
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  aspect-ratio: 1.79;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.movie-card__title {
+  grid-area: title;
+  margin: 14px 24px 10px 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--textcolor-light);
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.movie-card__action-btn {
+  grid-area: button;
+  justify-self: flex-end;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin: 14px 12px 0 0;
+  padding: 0;
+  border-radius: 50px;
+  border: 2px solid var(--textcolor-light);
+  background-color: #313131;
+}
+
+.movie-card__action-btn:hover {
+  opacity: .7;
+}
+
+.movie-card__action-btn:active {
+  transform: scale(.9);
+}
+
+.movie-card__action-btn_type_liked {
+  background-color: var(--bgcolor-action);
+}
+
+.movie-card__duration {
+  grid-area: duration;
+  margin-left: 12px;
+  margin-bottom: 14px;
+  color: var(--textcolor-grey);
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media screen and (max-width: 929px) {
+  .movie-card {
+    width: 339px;
+    height: 257px;
+  }
+  .movie-card__poster-container {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .movie-card {
+    width: 300px;
+    height: 235px;
+  }
+  .movie-card__poster-container {
+    height: 168px;
+  }
+}

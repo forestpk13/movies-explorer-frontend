@@ -94,18 +94,23 @@
   left: 18px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 989px) {
   .search-panel__toggle-label {
     flex-direction: row-reverse;
   }
 }
 
 @media screen and (max-width: 320px) {
+  .search-line__container {
+    padding-bottom: 8px;
+    margin-bottom: 41px;
+  }
   .search-panel__input {
     font-size: 18px;
   }
 
   .search-panel__toggle-label {
     justify-content: center;
+    font-size: 11px;
   }
 }

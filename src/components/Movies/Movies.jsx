@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import SearchPanel from '../SearchPanel/SearchPanel';
+import MovieCardsList from '../MovieCardsList/MovieCardsList';
 import Preloader from '../Preloader/Preloader';
 import './Movies.css';
 
@@ -16,6 +17,8 @@ function Movies () {
        onToggle={handleToggle}
        isToggle={shortFilmsToggle}
       />
+      <MovieCardsList />
+      <button type='button' className='movies__load-btn'>Ещё</button>
     </main>
   );
 };
