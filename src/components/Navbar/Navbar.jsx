@@ -15,7 +15,7 @@ function Navbar ({ isVisible, onClose }) {
   };
 
   return (
-    <div className={`navbar ${isVisible && 'navbar_visible'}`} onClick={handleCloseByOverlay} >
+    <div className={`navbar ${isVisible ? 'navbar_visible' : ''}`} onClick={handleCloseByOverlay} >
       <nav className={`navbar__links-container ${isVisible && 'navbar__links-container_visible'}`}>
         <ul className='navbar__links'>
           <li className='navbar__links-item navbar__links-item_resolution_mobile'>

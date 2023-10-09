@@ -17,7 +17,7 @@ function SearchPanel({
 
   return (
     <form className='search-panel' onSubmit={handleSubmit} noValidate>
-      <div className='search-line__container'>
+      <div className='search-panel__line-container'>
         <input
           type='text'
           name='filmSearch'

@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-.search-line__container {
+.search-panel__line-container {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #424242;
@@ -101,7 +101,7 @@
 }
 
 @media screen and (max-width: 320px) {
-  .search-line__container {
+  .search-panel__line-container {
     padding-bottom: 8px;
     margin-bottom: 41px;
   }

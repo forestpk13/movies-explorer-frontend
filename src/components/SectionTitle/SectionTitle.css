@@ -1,4 +1,4 @@
-.section-title {
+.section-title__title {
   margin: 0 0 23px 0;
   color: var(--textcolor-light);
   font-family: Inter;
@@ -16,7 +16,7 @@
 }
 
 @media screen and (max-width: 580px) {
-  .section-title {
+  .section-title__title {
     font-size: 18px;
     letter-spacing: -0.72px;
   }
