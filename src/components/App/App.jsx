@@ -29,7 +29,16 @@ function App() {
   const handleRegister = (user) => {
     navigate('/movies');
     setCurrentUser(user);
-    console.log(user);
+  }
+
+  const handleLogin = (user) => {
+    navigate('/movies');
+    setCurrentUser(user);
+  }
+
+  const handleLogout = (user) => {
+    navigate('/');
+    setCurrentUser(null);
   }
 
   return (
@@ -39,8 +48,8 @@ function App() {
             <Routes>
               <Route path='/' element={<Landing />} />
               <Route path='/signup' element={<Register onSubmit={handleRegister} />} />
-              <Route path='/signin' element={<Login />} />
-              <Route path='/profile' element={<Profile />} />
+              <Route path='/signin' element={<Login onSubmit={handleLogin} />} />
+              <Route path='/profile' element={<Profile onLogout={handleLogout} />} />
               <Route path='/movies' element={<Movies />} />
               <Route path='/saved-movies' element={<SavedMovies />} />
               <Route path='*' element={<PageNotFound />} />

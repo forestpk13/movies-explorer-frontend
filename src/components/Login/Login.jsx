@@ -1,7 +1,7 @@
 import UserPage from '../UserPage/UserPage';
 import Form from '../Form/Form';
 
-function Login () {
+function Login ({ onSubmit }) {
   const texts = {
     heading: 'Рады видеть!',
     caption: 'Еще не зарегистрированы?',
@@ -11,7 +11,7 @@ function Login () {
   return (
     <main className='login'>
       <UserPage texts={texts} page='login' route='/signup'>
-        <Form page='login' />
+        <Form onSubmit={onSubmit} page='login' />
       </UserPage>
     </main>
   );

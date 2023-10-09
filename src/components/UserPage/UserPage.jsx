@@ -5,7 +5,8 @@ function UserPage({
   children,
   texts,
   page,
-  route
+  route,
+  onLogout
 }) {
   let isProfilePage = page === 'profile' ? true : false;
 
@@ -16,7 +17,7 @@ function UserPage({
       {children}
       <div className='user-page__caption'>
           {!isProfilePage && <p className='user-page__caption-text '>{texts.caption}</p>}
-          <Link className={`user-page__link ${isProfilePage && 'user-page__link_page_profile'}`} to={route}>{texts.buttonText}</Link>
+          <Link className={`user-page__link ${isProfilePage && 'user-page__link_page_profile'}`} onClick={isProfilePage && onLogout} to={route}>{texts.buttonText}</Link>
       </div>
     </div>
   );
