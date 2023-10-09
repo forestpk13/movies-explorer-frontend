@@ -70,6 +70,14 @@
   background-color: var(--bgcolor-action);
 }
 
+.movie-card__action-btn_type_remove {
+  width: 8px;
+  height: 8px;
+  margin: 17px 15px 0 0;
+  background: url("../../images/movie_remove_icon.svg");
+  border: none;
+}
+
 .movie-card__duration {
   grid-area: duration;
   margin-left: 12px;

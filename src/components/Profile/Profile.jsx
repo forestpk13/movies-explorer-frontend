@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Form from '../Form/Form';
 import UserPage from '../UserPage/UserPage';
