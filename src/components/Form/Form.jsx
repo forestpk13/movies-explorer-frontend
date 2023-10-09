@@ -30,7 +30,7 @@ function Form({ onSubmit, page }) {
   return (
     <form className={`form`} onSubmit={handleSubmit}>
       <fieldset className='form__fields'>
-      {{isRegisterPage, isProfilePage} && <FormInput
+      {(isRegisterPage || isProfilePage) && <FormInput
         value={values.name}
         error={errors.name}
         onChange={onChange}

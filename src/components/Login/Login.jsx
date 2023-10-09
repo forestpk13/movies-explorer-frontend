@@ -10,7 +10,7 @@ function Login () {
 
   return (
     <main className='login'>
-      <UserPage texts={texts} page='login'>
+      <UserPage texts={texts} page='login' route='/signup'>
         <Form page='login' />
       </UserPage>
     </main>

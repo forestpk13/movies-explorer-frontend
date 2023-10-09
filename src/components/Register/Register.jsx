@@ -10,7 +10,7 @@ function Register({ onSubmit }) {
 
   return (
     <main className='register'>
-      <UserPage texts={texts} page='register'>
+      <UserPage texts={texts} page='register' route='/signin'>
         <Form onSubmit={onSubmit} page='register' />
       </UserPage>
     </main>

@@ -4,7 +4,8 @@ import './UserPage.css'
 function UserPage({
   children,
   texts,
-  page
+  page,
+  route
 }) {
   let isProfilePage = page === 'profile' ? true : false;
 
@@ -15,7 +16,7 @@ function UserPage({
       {children}
       <div className='user-page__caption'>
           {!isProfilePage && <p className='user-page__caption-text '>{texts.caption}</p>}
-          <Link className={`user-page__link ${isProfilePage && 'user-page__link_page_profile'}`} to={'/signin'}>{texts.buttonText}</Link>
+          <Link className={`user-page__link ${isProfilePage && 'user-page__link_page_profile'}`} to={route}>{texts.buttonText}</Link>
       </div>
     </div>
   );
