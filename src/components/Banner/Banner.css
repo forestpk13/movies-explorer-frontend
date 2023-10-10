@@ -1,0 +1,120 @@
+.banner {
+  background-color: #073042;
+  min-height: 569px;
+  width: 100%;
+  padding: 70px 70px 0 70px;
+  box-sizing: border-box;
+}
+
+.banner__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.banner__description-container{
+  max-width: 640px;
+  padding-top: 0;
+}
+
+.banner__title {
+  margin: 0;
+  margin-bottom: 36px;
+  color: var(--textcolor-light);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 50px;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: 1.16;
+}
+
+.banner__description {
+  margin: 0;
+  margin-bottom: 146px;
+  color: var(--textcolor-light);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.5;
+  max-width: 310px;
+}
+
+.banner__nav-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  text-decoration: none;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.33;
+}
+
+.banner__nav-button:hover {
+  opacity: .7;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .banner {
+    padding-top: 140px;
+    padding-bottom: 76px;
+  }
+
+  .banner__inner {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .banner__description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 680px;
+  }
+
+  .banner__title {
+    margin-top: 48px;
+    margin-bottom: 22px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 1.25;
+  }
+
+  .banner__description {
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 92px;
+    max-width: 260px;
+  }
+}
+
+@media screen and (max-width: 549px) {
+  .banner {
+    padding: 70px 0 30px 0;
+  }
+
+  .banner__title {
+    font-size: 30px;
+    max-width: 300px;
+    line-height: 1.27;
+    letter-spacing: -1.2px;
+    margin-top: 44px;
+    margin-bottom: 24px;
+  }
+
+  .banner__description {
+    margin-bottom: 80px;
+  }
+
+  .banner__image {
+    width: 210px;
+    height: 206px;
+  }
+}

@@ -1,0 +1,18 @@
+@import url(./vendor/fonts/fonts.css);
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bgcolor-main);
+}
+
+:root {
+  --bgcolor-main: #202020;
+  --bgcolor-light: #272727;
+  --bgcolor-action: #3DDC84;
+  --bgcolor-buttons: #4285F4;
+  --textcolor-light: #FFF;
+  --textcolor-grey: #8B8B8B;
+  --textcolor-dark: #000;
+  --error-color: #EE3465;
+}

@@ -1,0 +1,141 @@
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.navbar__links-container {
+  display: flex;
+  width: 676px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 16px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__link {
+  text-decoration: none;
+  color: var(--textcolor-light);
+  text-align: right;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.38;
+  height: 26px;
+}
+
+.navbar__link {
+  text-decoration: none;
+  color: var(--textcolor-light);
+  text-align: right;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.38;
+}
+
+.navbar__link_active {
+  font-weight: 500;
+}
+
+.navbar__profile-icon {
+  border-radius: 50px;
+  background-color:rgba(248, 248, 248, 0.1);
+  padding: 8px;
+  width: 10px;
+  height: 10px;
+}
+
+.navbar__link_type_profile {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.navbar__links-item_resolution_mobile {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 5;
+    justify-content: right;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s ease, visibility .4s;
+  }
+
+  .navbar_visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .navbar__links-container {
+    box-sizing: border-box;
+    padding-top: 159px;
+    padding-bottom: 77px;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bgcolor-main);
+    flex-basis: 520px;
+    transform: translateX(100%);
+    transition: transform .2s ease;
+  }
+
+  .navbar__links-container_visible {
+    transform: translateX(0);
+  }
+
+  .navbar__links {
+    flex-direction: column;
+    align-items: center;
+    gap: 29px;
+  }
+
+  .navbar__link {
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 18px;
+    line-height: normal;
+    padding-bottom: 4px;
+  }
+
+  .navbar__link_active {
+    border-bottom: 2px solid var(--textcolor-light);
+  }
+
+  .navbar__links-item_resolution_mobile {
+    display: block;
+  }
+
+  .navbar__link_type_profile {
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 13px;
+    line-height: 0.92;
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .navbar__links-container {
+    padding-top: 146px;
+  }
+
+  .navbar__links {
+    gap: 24px;
+  }
+}

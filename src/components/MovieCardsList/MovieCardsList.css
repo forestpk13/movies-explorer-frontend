@@ -1,0 +1,35 @@
+.movie-cards {
+  list-style: none;
+  display: grid;
+  flex-wrap: wrap;
+  margin-top: 117px;
+  margin-bottom: 80px;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 32px 20px;
+}
+
+@media screen and (max-width: 989px) {
+  .movie-cards {
+    margin-top: 126px;
+    margin-bottom: 80px;
+    gap: 36px 30px;
+  }
+}
+
+@media screen and (max-width: 687px) {
+  .movie-cards {
+    grid-template-columns: 1fr;
+    margin-bottom: 80px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .movie-cards {
+    margin-top: 90px;
+    row-gap: 20px;
+  }
+}

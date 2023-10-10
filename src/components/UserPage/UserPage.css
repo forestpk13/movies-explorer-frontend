@@ -1,0 +1,122 @@
+.user-page {
+  display: flex;
+  flex-direction: column;
+  max-width: 396px;
+  margin: 0 auto;
+  padding: 70px 0 0 0;
+  min-height: 560px;
+}
+
+.user-page_page_profile {
+  min-height: 479px;
+  max-width: 410px;
+}
+
+.user-page__logo {
+  display: block;
+  width: 38px;
+  height: 38px;
+  background: url(../../images/header_logo.svg) center / contain no-repeat;
+  margin-bottom: 41px;
+}
+
+.user-page__heading {
+  margin-top: 0;
+  color: var(--textcolor-light);
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 36px;
+}
+
+.user-page__heading_page_profile {
+  text-align: center;
+  margin-bottom: 121px;
+}
+
+.user-page__caption-text {
+  margin: 0;
+  color: var(--textcolor-grey);
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.user-page__caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.user-page__link {
+  text-decoration: none;
+  color: #4285F4;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.user-page__link_page_profile {
+  color: var(--error-color);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .user-page {
+    padding: 233px 0 0 0;
+  }
+
+  .user-page__heading_page_profile {
+    margin-bottom: 99px;
+  }
+
+  .user-page_page_profile {
+    min-height: 448px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .user-page {
+    padding: 56px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 694px;
+  }
+
+  .user-page_page_profile {
+    padding-top: 69px;
+    min-height: 596px;
+  }
+
+  .user-page__logo {
+    margin-bottom: 50px;
+  }
+
+  .user-page__heading {
+    margin-bottom: 75px;
+  }
+
+  .user-page__heading_page_profile {
+    margin-bottom: 80px;
+  }
+
+  .user-page__caption-text {
+    font-size: 12px;
+  }
+
+  .user-page__link {
+    font-size: 12px;
+  }
+}

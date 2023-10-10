@@ -1,0 +1,36 @@
+.movies {
+  padding: 63px 70px 72px 70px;
+}
+
+.movies__load-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 11px 0;
+  width: 320px;
+  color:  var(--textcolor-light);
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: none;
+  border-radius: 6px;
+  border: 1px solid #424242;
+}
+
+@media screen and (max-width: 989px) {
+  .movies {
+    padding: 79px 30px 99px 30px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .movies {
+    padding: 84px 14px 27px 14px;
+  }
+
+  .movies__load-btn {
+    width: 240px;
+  }
+}

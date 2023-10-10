@@ -1,0 +1,120 @@
+.technologies {
+  padding: 103px 70px 98px 70px;
+  background-color: var(--bgcolor-light);
+}
+
+.technologies__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.technologies__title {
+  margin: 89px 0 0 0;
+  color: var(--textcolor-light);
+  text-align: center;
+  font-family: Inter;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -2px;
+}
+
+.technologies__description {
+  margin: 26px 0 0 0;
+  max-width: 460px;
+  color: var(--textcolor-light);
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: -0.56px;
+}
+
+.technologies__list {
+  margin: 102px 0 0 0;
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+  gap: 10px;
+}
+
+.technologies__list-item {
+  display: flex;
+  width: 90px;
+  height: 60px;
+  color: var(--textcolor-light);
+  align-items: center;
+  justify-content: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.56px;
+  background-color: #303030;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .technologies {
+    padding: 90px 50px 89px 50px;
+  }
+
+  .technologies__title {
+    margin-top: 80px;
+  }
+
+  .technologies__description {
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: -0.48px;
+  }
+
+  .technologies__list {
+    margin-top: 83px;
+  }
+
+  .technologies__list-item {
+    width: 84px;
+    height: 57px;
+    font-size: 12px;
+    letter-spacing: -0.48px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .technologies {
+    padding: 60px 18px;
+  }
+
+  .technologies__title {
+    margin-top: 67px;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .technologies__description {
+    margin-top: 25px;
+    font-size: 11px;
+    line-height: 1.45;
+    letter-spacing: -0.44px;
+  }
+
+  .technologies__list {
+    margin-top: 50px;
+    flex-wrap: wrap;
+    max-width: 366px;
+  }
+
+}
+
+@media screen and (max-width: 402px) {
+  .technologies__list {
+    max-width: 178px;
+  }
+}
