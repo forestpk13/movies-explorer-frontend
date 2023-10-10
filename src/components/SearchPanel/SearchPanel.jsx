@@ -25,6 +25,7 @@ function SearchPanel({
           className='search-panel__input'
           value={value}
           onChange={onChange}
+          required
           {...restProps}
         />
         <button
