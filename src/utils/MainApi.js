@@ -45,6 +45,7 @@ class MainApi {
   }
 
   async updateOwnProfile(userInfo) {
+    console.log(userInfo)
     return this._request('/users/me', 'PATCH', userInfo);
   }
 
@@ -62,7 +63,7 @@ class MainApi {
 
 }
 
-export const api = new MainApi({
+ const api = new MainApi({
   baseUrl: 'https://api.forestpk13.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
@@ -71,3 +72,4 @@ export const api = new MainApi({
   unauthorizedCode: 401,
 });
 
+export default api;

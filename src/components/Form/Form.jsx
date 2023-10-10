@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import FormInput from '../FormInput/FormInput';
 import { EMAIL_REGEXP } from '../../utils/constants';
 import useValidationOfForm from '../../utils/hooks/useValidationOfForm';
@@ -5,11 +8,13 @@ import './Form.css';
 
 
 function Form({ onSubmit, page }) {
+  const currentUser = useContext(CurrentUserContext);
   const {
     values,
     errors,
     isValid,
     onChange,
+    resetForm
   } = useValidationOfForm();
 
   const buttonTextCheck = page === 'login'
@@ -26,6 +31,10 @@ function Form({ onSubmit, page }) {
     e.preventDefault();
     onSubmit(values);
   }
+
+  useEffect(() => {
+    resetForm({ name: currentUser?.name, email: currentUser?.email });
+  }, [currentUser])
 
   return (
     <form className={`form`} onSubmit={handleSubmit}>

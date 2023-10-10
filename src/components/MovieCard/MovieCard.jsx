@@ -26,8 +26,6 @@ function MovieCard ({
     type='liked'
   }
 
-  console.log(location.pathname)
-
   const cardLikeButtonClassName = (
     `movie-card__action-btn${isSaved ? ` movie-card__action-btn_type_${type}`: ''}`
   );

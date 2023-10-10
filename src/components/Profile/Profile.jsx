@@ -6,14 +6,14 @@ import UserPage from '../UserPage/UserPage';
 function Profile({ onSubmit, onLogout }) {
   const currentUser = useContext(CurrentUserContext);
   const texts = {
-    heading: `Привет, ${currentUser.name}!`,
+    heading: `Привет, ${currentUser?.name}!`,
     buttonText: 'Выйти из аккаунта'
   }
 
   return (
     <main className='profile'>
       <UserPage texts={texts} page='profile' onLogout={onLogout} route='/'>
-        <Form page='profile' />
+        <Form page='profile' onSubmit={onSubmit}/>
       </UserPage>
     </main>
   );
