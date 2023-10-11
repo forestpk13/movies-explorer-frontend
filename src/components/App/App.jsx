@@ -24,7 +24,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   // Ниже - стейты для работы с запросами
-  const [serverError, setServerError] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [resultMessage, setResultMessage] = useState('');
 
   const location = useLocation().pathname;
   const navigate = useNavigate();
@@ -39,8 +40,8 @@ function App() {
       setCurrentUser(userData)
       navigate('/movies');
     } catch (err) {
-      setServerError(err.message)
-      setTimeout(() => setServerError(''), 3000)
+      setErrorMessage(err.message)
+      setTimeout(() => setErrorMessage(''), 3000)
     };
   }
 
@@ -51,8 +52,8 @@ function App() {
       getUser();
       navigate('/movies');
     } catch (err) {
-      setServerError(err.message)
-      setTimeout(() => setServerError(''), 3000)
+      setErrorMessage(err.message)
+      setTimeout(() => setErrorMessage(''), 3000)
     }
   }
 
@@ -65,8 +66,8 @@ function App() {
         setCurrentUser(user);
       }
     } catch (err) {
-      setServerError(err.message);
-      setTimeout(() => setServerError(''), 3000);
+      setErrorMessage(err.message);
+      setTimeout(() => setErrorMessage(''), 3000);
     }
   };
 
@@ -87,9 +88,11 @@ function App() {
     try {
       const user = await api.updateOwnProfile(JSON.stringify(userData))
       setCurrentUser(user);
+      setResultMessage('Профиль успешно обновлен');
+      setTimeout(() => setResultMessage(''), 3000)
     } catch (err) {
-      setServerError(err.message);
-      setTimeout(() => setServerError(''), 3000);
+      setErrorMessage(err.message);
+      setTimeout(() => setErrorMessage(''), 3000);
     }
   }
 
@@ -111,7 +114,7 @@ function App() {
               <Route path='/signup' element={<Register onSubmit={handleRegister} />} />
               <Route path='/signin' element={<Login onSubmit={handleLogin} />} />
               <Route element={<ProtectedRoutes condition={isLoggedIn} redirectPath='/' />} >
-                <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout}/>} />
+                <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout} error={errorMessage} resultMessage={resultMessage}/>} />
                 <Route path='/movies' element={<Movies />} />
                 <Route path='/saved-movies' element={<SavedMovies />} />
                 <Route path='*' element={<PageNotFound />} />

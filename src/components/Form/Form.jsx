@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import FormInput from '../FormInput/FormInput';
 import { EMAIL_REGEXP, NAME_REGEXP } from '../../utils/constants';
@@ -7,7 +7,9 @@ import useValidationOfForm from '../../utils/hooks/useValidationOfForm';
 import './Form.css';
 
 
-function Form({ onSubmit, page }) {
+function Form({ onSubmit, page, error, resultMessage }) {
+  const [isUserInfoUpdated, setIsUserInfoUpdated] = useState(false);
+  console.log(resultMessage)
   const currentUser = useContext(CurrentUserContext);
   const {
     values,
@@ -31,6 +33,14 @@ function Form({ onSubmit, page }) {
     e.preventDefault();
     onSubmit(values);
   }
+
+  useEffect(() => {
+    if (values.name !== currentUser.name || values.email !== currentUser.email) {
+      setIsUserInfoUpdated(true);
+    } else {
+      setIsUserInfoUpdated(false);
+    }
+  }, [values?.name, values?.email]);
 
   useEffect(() => {
     resetForm({ name: currentUser?.name, email: currentUser?.email });
@@ -76,7 +86,10 @@ function Form({ onSubmit, page }) {
 
       </fieldset>
       <div className='form__button-container'>
-          <button className={`form__submit-button ${isProfilePage && 'form__submit-button_page_profile'}`} type='submit' disabled={!isValid}>{isProfilePage ? 'Редактировать' : buttonTextCheck.text}</button>
+          <span className={`form__message ${error && 'form__message_type_error'}`}>
+            {resultMessage || error}
+          </span>
+          <button className={`form__submit-button ${isProfilePage && 'form__submit-button_page_profile'}`} type='submit' disabled={!isValid || !isUserInfoUpdated}>{isProfilePage ? 'Редактировать' : buttonTextCheck.text}</button>
       </div>
     </form>
   )

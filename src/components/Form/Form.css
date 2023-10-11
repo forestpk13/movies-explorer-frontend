@@ -53,6 +53,20 @@
   color: #C2C2C2;
 }
 
+.form__submit-button_page_profile:disabled {
+  background: none;
+}
+
+.form__message {
+  position: absolute;
+  color: var(--textcolor-light);
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 
 @media screen and (max-width: 500px) {
   .form__submit-button {
