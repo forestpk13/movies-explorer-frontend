@@ -2,7 +2,7 @@
 import { useContext, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import FormInput from '../FormInput/FormInput';
-import { EMAIL_REGEXP } from '../../utils/constants';
+import { EMAIL_REGEXP, NAME_REGEXP } from '../../utils/constants';
 import useValidationOfForm from '../../utils/hooks/useValidationOfForm';
 import './Form.css';
 
@@ -47,6 +47,7 @@ function Form({ onSubmit, page }) {
         title='Имя'
         type='text'
         isProfilePage={isProfilePage}
+        pattern={NAME_REGEXP}
         required
         minLength='3'
       />}
