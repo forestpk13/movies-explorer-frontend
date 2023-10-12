@@ -11,6 +11,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import api from '../../utils/MainApi'
+import moviesApi from '../../utils/MoviesApi';
 import {
   pagesWithHeader,
   pagesWithFooter
@@ -26,6 +27,10 @@ function App() {
   // Ниже - стейты для работы с запросами
   const [errorMessage, setErrorMessage] = useState('');
   const [resultMessage, setResultMessage] = useState('');
+  const [isInRequest, setIsInRequest] = useState(false);
+  const [moviesList, setMoviesList] = useState([]); // Полный список, возвращаемый при запросе на api BeatFilms
+  const [foundMovies, setFoundMovies] = useState([]); // Список фильмов, отфильтрованный по запросу в инпуте
+  const [foundMoviesToggleFiltered, setFoundMoviesToggleFiltered] = useState([]); // Список фильмов, отфильтрованный по запросу в инпуте с учетам тоггла "Короткометражки"
 
   const location = useLocation().pathname;
   const navigate = useNavigate();
@@ -84,7 +89,6 @@ function App() {
   }
 
   const changeUserInfo = async (userData) => {
-    console.log(userData)
     try {
       const user = await api.updateOwnProfile(JSON.stringify(userData))
       setCurrentUser(user);
@@ -105,6 +109,46 @@ function App() {
     }
   };
 
+  // Получение полного списка фильмов при запросе на api BeatFilms
+  const getMovies = async () => {
+    setIsInRequest(true);
+    try {
+      const movies = await moviesApi.getMovies();
+      setMoviesList(movies);
+      setIsInRequest(false);
+      return movies
+    } catch (err) {
+      console.log(err);
+      setIsInRequest(false);
+    }
+  }
+  // Фильтрация фильмов по запросу с приведением к нижнему регистру для сравнения независимо от регистра ввода
+  const filterMovies = (movies, query, isShortToggle) => {
+    return movies.filter(({ nameRU, nameEN, duration }) => {
+      const queryLowerCased = query.toLowerCase();
+      const nameLowerCased = (nameRU + nameEN).toLowerCase();
+      const toggle = isShortToggle ? duration <= 40 : true;
+      return toggle && nameLowerCased.includes(queryLowerCased);
+    })
+  };
+
+  // Поиск фильмов
+  const searchMovies = async (queryText, isShortToggle) => {
+    localStorage.setItem('queryText', queryText);
+    localStorage.setItem('shortFilmsToggle', isShortToggle);
+    let movies;
+    if (moviesList.length === 0) {
+      movies = await getMovies();
+      sessionStorage.setItem('moviesStorage', JSON.stringify(movies));
+    } else {
+      movies = moviesList;
+    }
+    const filteredMovies = filterMovies(movies, queryText);
+    setFoundMovies(filteredMovies);
+    const filteredMoviesWithToggle = filterMovies(filteredMovies, queryText, isShortToggle);
+    setFoundMoviesToggleFiltered(filteredMoviesWithToggle);
+    localStorage.setItem('foundMovies', JSON.stringify(filteredMovies));
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -114,8 +158,8 @@ function App() {
               <Route path='/signup' element={<Register onSubmit={handleRegister} />} />
               <Route path='/signin' element={<Login onSubmit={handleLogin} />} />
               <Route element={<ProtectedRoutes condition={isLoggedIn} redirectPath='/' />} >
-                <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout} error={errorMessage} resultMessage={resultMessage}/>} />
-                <Route path='/movies' element={<Movies />} />
+                <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout} error={errorMessage} resultMessage={resultMessage} />} />
+                <Route path='/movies' element={<Movies movies={foundMoviesToggleFiltered} onSearch={searchMovies} isInRequest={isInRequest}/>} />
                 <Route path='/saved-movies' element={<SavedMovies />} />
               </Route>
               <Route path='*' element={<PageNotFound />} />

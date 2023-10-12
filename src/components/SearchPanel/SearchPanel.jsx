@@ -1,7 +1,6 @@
 import './SearchPanel.css';
 
 function SearchPanel({
-  onSearch,
   value,
   onChange,
   onToggle,
