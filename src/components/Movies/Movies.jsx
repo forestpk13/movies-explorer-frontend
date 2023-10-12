@@ -4,7 +4,7 @@ import MovieCardsList from '../MovieCardsList/MovieCardsList';
 import Preloader from '../Preloader/Preloader';
 import './Movies.css';
 
-function Movies ({ movies, onSearch, isInRequest }) {
+function Movies ({ movies, onSearch, isInRequest, onShowMore, moreMoviesExist }) {
   const [value, setValue] = useState(
     localStorage.getItem('queryText') || ''
   );
@@ -28,14 +28,8 @@ function Movies ({ movies, onSearch, isInRequest }) {
       onSearch(value, shortFilmsToggle);
     }
   }
-  console.log(isInRequest);
-  const moviesExist = movies.length;
-  const preloader = isInRequest ? <Preloader /> : null;
-  const moviesList = !isInRequest && moviesExist ? (
-    <MovieCardsList
-      movies={movies}
-    />
-  ) : null;
+
+  const moviesExist = movies.length > 0 ? true : false;
 
   return (
     <main className='movies'>
@@ -48,9 +42,13 @@ function Movies ({ movies, onSearch, isInRequest }) {
        onSubmit={onSubmit}
        required
       />
-      {preloader}
-      {moviesList}
-      <button type='button' className='movies__load-btn'>Ещё</button>
+      {isInRequest && <Preloader />}
+      {!isInRequest && moviesExist &&
+        <MovieCardsList
+          movies={movies}
+        />}
+      {(!isInRequest && moviesExist && !moreMoviesExist) &&
+        <button type='button' onClick={onShowMore} className='movies__load-btn'>Ещё</button>}
     </main>
   );
 };

@@ -12,6 +12,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import api from '../../utils/MainApi'
 import moviesApi from '../../utils/MoviesApi';
+import { debounce } from '../../utils/utils';
 import {
   pagesWithHeader,
   pagesWithFooter
@@ -31,12 +32,53 @@ function App() {
   const [moviesList, setMoviesList] = useState([]); // Полный список, возвращаемый при запросе на api BeatFilms
   const [foundMovies, setFoundMovies] = useState([]); // Список фильмов, отфильтрованный по запросу в инпуте
   const [foundMoviesToggleFiltered, setFoundMoviesToggleFiltered] = useState([]); // Список фильмов, отфильтрованный по запросу в инпуте с учетам тоггла "Короткометражки"
+  const [visibleFoundMovies, setVisibleFoundMovies] = useState([]); // Видимый список до прожатия кнопки "Еще"
+  const [cardsAmount, setCardsAmount] = useState({}); // Количество видимых карточек и карточек, которые подгрузятся
 
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
   const isPageWithHeader = pagesWithHeader.includes(location);
   const isPageWithFooter = pagesWithFooter.includes(location);
+
+  // Функция расчета количества карточек
+  const calculateCardsAmount = () => {
+    const pageWidth = document.documentElement.clientWidth;
+    if (pageWidth > 1180) {
+      setCardsAmount({ initial: 12, additional: 3, row: 3 });
+      return
+    }
+    if (pageWidth > 720) {
+      setCardsAmount({ initial: 8, additional: 2, row: 2 });
+      return
+    }
+    setCardsAmount({ initial: 5, additional: 2, row: 1 });
+  };
+
+  const debouncedCalculateAmount = debounce(calculateCardsAmount, 200);
+
+    useEffect(() => {
+      calculateCardsAmount();
+      window.addEventListener('resize', debouncedCalculateAmount);
+      return () => window.removeEventListener('resize', debouncedCalculateAmount);
+    }, []);
+
+    useEffect(() => {
+      let shownMovies = foundMoviesToggleFiltered.slice(0, cardsAmount.initial);
+      setVisibleFoundMovies(shownMovies);
+    }, [foundMoviesToggleFiltered])
+
+    const showMoreMovies = () => {
+      const sliceStart = visibleFoundMovies.length;
+      const { initial, additional, row } = cardsAmount;
+
+      const incompleteRow = (Math.abs(sliceStart - initial)) % row;
+      const additionalMoviesQty = incompleteRow && (row - incompleteRow)
+
+      const sliceEnd = sliceStart + additional + additionalMoviesQty;
+      const additionalMovies = foundMovies.slice(sliceStart, sliceEnd);
+      setVisibleFoundMovies([...visibleFoundMovies, ...additionalMovies]);
+    }
 
   const handleRegister = async (user) => {
     try {
@@ -159,7 +201,12 @@ function App() {
               <Route path='/signin' element={<Login onSubmit={handleLogin} />} />
               <Route element={<ProtectedRoutes condition={isLoggedIn} redirectPath='/' />} >
                 <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout} error={errorMessage} resultMessage={resultMessage} />} />
-                <Route path='/movies' element={<Movies movies={foundMoviesToggleFiltered} onSearch={searchMovies} isInRequest={isInRequest}/>} />
+                <Route path='/movies'
+                  element={<Movies movies={visibleFoundMovies}
+                  onSearch={searchMovies}
+                  isInRequest={isInRequest}
+                  onShowMore={showMoreMovies}
+                  moreMoviesExist={visibleFoundMovies.length === foundMoviesToggleFiltered.length}/>} />
                 <Route path='/saved-movies' element={<SavedMovies />} />
               </Route>
               <Route path='*' element={<PageNotFound />} />
