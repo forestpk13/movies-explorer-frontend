@@ -4,14 +4,14 @@ import MovieCardsList from '../MovieCardsList/MovieCardsList';
 import Preloader from '../Preloader/Preloader';
 import './Movies.css';
 
-function Movies ({ movies, onSearch, isInRequest, onShowMore, moreMoviesExist }) {
+function Movies ({ movies, onSearch, isInRequest, onShowMore, moreMoviesExist, onToggle }) {
   const [value, setValue] = useState(
     localStorage.getItem('queryText') || ''
   );
   const [shortFilmsToggle, setShortFilmsToggle] = useState(
     JSON.parse(localStorage.getItem('shortFilmsToggle')) || false
   );
-  const [validateMessage, setValidateMessage] = useState('');
+  const [validationMessage, setValidationMessage] = useState('');
 
   const handleToggle = () => {
     setShortFilmsToggle(v => !v);
@@ -23,11 +23,22 @@ function Movies ({ movies, onSearch, isInRequest, onShowMore, moreMoviesExist })
 
   const onSubmit = () => {
     if (!value) {
-      setValidateMessage('Отсутствует текст запроса');
+      setValidationMessage('Введите название фильма');
     } else {
       onSearch(value, shortFilmsToggle);
     }
   }
+
+  useEffect(() => {
+    if (value && validationMessage) {
+      setValidationMessage('');
+    }
+  }, [value, validationMessage])
+
+  useEffect(() => {
+    localStorage.setItem('shortFilmsToggle', shortFilmsToggle)
+    onToggle(value, shortFilmsToggle);
+  }, [shortFilmsToggle])
 
   const moviesExist = movies.length > 0 ? true : false;
 
@@ -35,7 +46,7 @@ function Movies ({ movies, onSearch, isInRequest, onShowMore, moreMoviesExist })
     <main className='movies'>
       <SearchPanel
        value={value}
-       validateMessage={validateMessage}
+       validationMessage={validationMessage}
        onChange={onChange}
        onToggle={handleToggle}
        isToggle={shortFilmsToggle}

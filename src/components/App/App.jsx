@@ -45,7 +45,7 @@ function App() {
   const calculateCardsAmount = () => {
     const pageWidth = document.documentElement.clientWidth;
     if (pageWidth > 1180) {
-      setCardsAmount({ initial: 12, additional: 3, row: 3 });
+      setCardsAmount({ initial: 12, additional: 4, row: 4 });
       return
     }
     if (pageWidth > 720) {
@@ -126,7 +126,16 @@ function App() {
   // Удаляем все данные, которые сгенерил пользователь за сессию
   const deleteAllSessionData = () => {
     setIsLoggedIn(false);
-    setCurrentUser(null);;
+    setCurrentUser(null);
+
+    setMoviesList([]);
+    setFoundMovies([]);
+    setVisibleFoundMovies([]);
+    setFoundMoviesToggleFiltered([]);
+    localStorage.removeItem('queryText');
+    localStorage.removeItem('shortFilmsToggle');
+    localStorage.removeItem('foundMovies');
+    sessionStorage.removeItem('moviesStorage');
     navigate('/');
   }
 
@@ -174,6 +183,12 @@ function App() {
     })
   };
 
+  const filterMoviesByToggle = (query, isShortToggle) => {
+    if (foundMovies.length === 0) return;
+    const movies = filterMovies(foundMovies, query, isShortToggle);
+    setFoundMoviesToggleFiltered(movies);
+  };
+
   // Поиск фильмов
   const searchMovies = async (queryText, isShortToggle) => {
     localStorage.setItem('queryText', queryText);
@@ -206,6 +221,7 @@ function App() {
                   onSearch={searchMovies}
                   isInRequest={isInRequest}
                   onShowMore={showMoreMovies}
+                  onToggle={filterMoviesByToggle}
                   moreMoviesExist={visibleFoundMovies.length === foundMoviesToggleFiltered.length}/>} />
                 <Route path='/saved-movies' element={<SavedMovies />} />
               </Route>

@@ -18,8 +18,6 @@ function Form({ onSubmit, page, error, resultMessage }) {
     resetForm
   } = useValidationOfForm();
 
-  console.log(isValid);
-
   const buttonTextCheck = page === 'login'
     ? {
       text: 'Войти',

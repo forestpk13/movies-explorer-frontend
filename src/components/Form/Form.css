@@ -39,7 +39,6 @@
   opacity: .7;
 }
 
-
 .form__submit-button_page_profile {
   width: fit-content;
   cursor: pointer;
@@ -67,7 +66,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  transition: all 0.5s;
 }
 
 .form__message_type_error {
