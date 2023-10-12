@@ -117,8 +117,8 @@ function App() {
                 <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout} error={errorMessage} resultMessage={resultMessage}/>} />
                 <Route path='/movies' element={<Movies />} />
                 <Route path='/saved-movies' element={<SavedMovies />} />
-                <Route path='*' element={<PageNotFound />} />
               </Route>
+              <Route path='*' element={<PageNotFound />} />
             </Routes>
             {isPageWithFooter && <Footer />}
       </div>

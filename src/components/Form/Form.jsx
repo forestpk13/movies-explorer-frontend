@@ -9,7 +9,6 @@ import './Form.css';
 
 function Form({ onSubmit, page, error, resultMessage }) {
   const [isUserInfoUpdated, setIsUserInfoUpdated] = useState(false);
-  console.log(resultMessage)
   const currentUser = useContext(CurrentUserContext);
   const {
     values,
@@ -18,6 +17,8 @@ function Form({ onSubmit, page, error, resultMessage }) {
     onChange,
     resetForm
   } = useValidationOfForm();
+
+  console.log(isValid);
 
   const buttonTextCheck = page === 'login'
     ? {
@@ -35,7 +36,7 @@ function Form({ onSubmit, page, error, resultMessage }) {
   }
 
   useEffect(() => {
-    if (values.name !== currentUser.name || values.email !== currentUser.email) {
+    if (isProfilePage && (values.name !== currentUser.name || values.email !== currentUser.email)) {
       setIsUserInfoUpdated(true);
     } else {
       setIsUserInfoUpdated(false);
@@ -89,7 +90,7 @@ function Form({ onSubmit, page, error, resultMessage }) {
           <span className={`form__message ${error && 'form__message_type_error'}`}>
             {resultMessage || error}
           </span>
-          <button className={`form__submit-button ${isProfilePage && 'form__submit-button_page_profile'}`} type='submit' disabled={!isValid || !isUserInfoUpdated}>{isProfilePage ? 'Редактировать' : buttonTextCheck.text}</button>
+          <button className={`form__submit-button ${isProfilePage && 'form__submit-button_page_profile'}`} type='submit' disabled={!isValid || isProfilePage && !isUserInfoUpdated}>{isProfilePage ? 'Редактировать' : buttonTextCheck.text}</button>
       </div>
     </form>
   )

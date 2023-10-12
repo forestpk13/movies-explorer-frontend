@@ -14,11 +14,13 @@
 
 .form__button-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-around;
 }
 
 .form__submit-button {
-  margin-top: 69px;
+  margin-top: 20px;
   width: 100%;
   border-radius: 3px;
   padding: 14px 0;
@@ -58,13 +60,18 @@
 }
 
 .form__message {
-  position: absolute;
   color: var(--textcolor-light);
+  text-align: center;
   font-family: Inter;
-  font-size: 10px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  transition: all 0.5s;
+}
+
+.form__message_type_error {
+  color: var(--error-color);
 }
 
 
