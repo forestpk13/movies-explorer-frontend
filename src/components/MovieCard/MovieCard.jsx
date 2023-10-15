@@ -1,5 +1,4 @@
-import { useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useMemo } from 'react';
 import './MovieCard.css';
 
 function MovieCard ({
