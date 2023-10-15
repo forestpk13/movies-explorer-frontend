@@ -28,6 +28,13 @@ function SavedMovies ({ movies, onDeleteMovie, onSearch, isInRequest, onToggle, 
     }
   }
 
+  const moviesExist = movies.length > 0 ? true : false;
+
+  useEffect(() => {
+    localStorage.setItem('savedShortFilmsToggle', shortFilmsToggle);
+    onToggle(value, shortFilmsToggle);
+  }, [shortFilmsToggle])
+
   return (
     <main className='saved-movies'>
       <SearchPanel
@@ -39,8 +46,12 @@ function SavedMovies ({ movies, onDeleteMovie, onSearch, isInRequest, onToggle, 
        onSubmit={onSubmit}
        required
       />
-      <MovieCardsList movies={movies} onDeleteMovie={onDeleteMovie} />
-      <button type='button' className='saved-movies__load-btn'>Ещё</button>
+      {isInRequest && <Preloader />}
+      {!isInRequest && moviesExist &&
+        <MovieCardsList movies={movies} onDeleteMovie={onDeleteMovie} />}
+      {!isInRequest && !savedMoviesExist &&
+        <p className='saved-movies__search-message'>{'Нет сохраненных фильмов'}</p>
+      }
     </main>
   );
 };

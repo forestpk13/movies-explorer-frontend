@@ -2,9 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import UserPage from '../UserPage/UserPage';
 import Form from '../Form/Form';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Register({ onSubmit }) {
+function Register({ onSubmit, currentUser }) {
   const texts = {
     heading: 'Добро пожаловать!',
     caption: 'Уже зарегистрированы?',
@@ -14,10 +13,10 @@ function Register({ onSubmit }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (CurrentUserContext) {
-      navigate('/')
+    if (currentUser !== null) {
+      navigate('/');
     }
-  }, [])
+  }, [currentUser])
 
   return (
     <main className='register'>

@@ -306,8 +306,8 @@ function App() {
             {isPageWithHeader && <Header />}
             <Routes>
               <Route path='/' element={<Landing />} />
-              <Route path='/signup' element={<Register onSubmit={handleRegister} />} />
-              <Route path='/signin' element={<Login onSubmit={handleLogin} />} />
+              <Route path='/signup' element={<Register onSubmit={handleRegister} currentUser={currentUser}/>} />
+              <Route path='/signin' element={<Login onSubmit={handleLogin} currentUser={currentUser} />} />
               <Route element={<ProtectedRoutes condition={isLoggedIn} redirectPath='/' />} >
                 <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout} error={errorMessage} resultMessage={resultMessage} />} />
                 <Route path='/movies'
