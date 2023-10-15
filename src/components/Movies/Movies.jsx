@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import SearchPanel from '../SearchPanel/SearchPanel';
 import MovieCardsList from '../MovieCardsList/MovieCardsList';
 import Preloader from '../Preloader/Preloader';
 import './Movies.css';
 
-function Movies ({ movies, onSearch, isInRequest, isFirstSearch, onShowMore, moreMoviesExist, onToggle }) {
+function Movies ({ movies, onSearch, isInRequest, isFirstSearch, onShowMore, moreMoviesExist, onToggle, onSaveMovie, onDeleteMovie }) {
   const [value, setValue] = useState(
     localStorage.getItem('queryText') || ''
   );
@@ -57,6 +58,8 @@ function Movies ({ movies, onSearch, isInRequest, isFirstSearch, onShowMore, mor
       {!isInRequest && moviesExist &&
         <MovieCardsList
           movies={movies}
+          onSaveMovie={onSaveMovie}
+          onDeleteMovie={onDeleteMovie}
         />}
       {(!isInRequest && moviesExist && !moreMoviesExist) &&
         <button type='button' onClick={onShowMore} className='movies__load-btn'>Ещё</button>}

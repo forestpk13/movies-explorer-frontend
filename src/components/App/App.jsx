@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import ProtectedRoutes from '../ProtectedRoutes/ProtectedRoutes';
 import { useState, useEffect } from 'react';
@@ -35,6 +36,8 @@ function App() {
   const [foundMoviesToggleFiltered, setFoundMoviesToggleFiltered] = useState([]); // Список фильмов, отфильтрованный по запросу в инпуте с учетам тоггла "Короткометражки"
   const [visibleFoundMovies, setVisibleFoundMovies] = useState([]); // Видимый список до прожатия кнопки "Еще"
   const [cardsAmount, setCardsAmount] = useState({}); // Количество видимых карточек и карточек, которые подгрузятся
+  const [savedMovies, setSavedMovies] = useState([]); // Список сохраненных фильмов
+  const [savedMoviesFiltered, setSavedMoviesFiltered] = useState([]); // Отфильтрованный список сохраненных фильмов
 
   const location = useLocation().pathname;
   const navigate = useNavigate();
@@ -123,17 +126,18 @@ function App() {
     getUser();
   }, []);
 
-
   // Удаляем все данные, которые сгенерил пользователь за сессию
   const deleteAllSessionData = () => {
     setIsLoggedIn(false);
     setCurrentUser(null);
     setIsFirstSearch(true);
-
     setMoviesList([]);
     setFoundMovies([]);
     setVisibleFoundMovies([]);
     setFoundMoviesToggleFiltered([]);
+    setSavedMovies([]);
+    console.log(savedMovies);
+    setSavedMoviesFiltered([]);
     localStorage.removeItem('queryText');
     localStorage.removeItem('shortFilmsToggle');
     localStorage.removeItem('foundMovies');
@@ -175,6 +179,80 @@ function App() {
       setIsInRequest(false);
     }
   }
+
+  const showSavedMovies = (arr) => {
+    return arr.map(movie => {
+      const match = savedMovies.find(({ movieId }) => movieId === movie.movieId);
+      return match ? { ...movie, type: 'liked' } : { ...movie, type: 'default' }
+    });
+  }
+
+  useEffect(() => {
+    if (savedMovies.length > 0) {
+      showSavedMovies(visibleFoundMovies);
+    }
+  }, [savedMovies.length])
+
+  // Cохраняем фильм
+  const saveMovie = async (id) => {
+    try {
+      const movie = foundMovies.find(item => item.movieId === id);
+      const savedMovie = await api.saveMovie(movie);
+      setSavedMovies(movies => [...movies, savedMovie])
+      setSavedMoviesFiltered(movies => [...movies, savedMovie]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Получаем список сохраненных фильмов
+  const getSavedMovies = async () => {
+    try {
+      const savedMovies = await api.getSavedMovies();
+      setSavedMovies(savedMovies);
+      setSavedMoviesFiltered(savedMovies);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Удаляем фильм из списка сохраненных
+  const deleteMovie = async (id) => {
+    try {
+      const removedMovie = savedMovies.find(movie => movie.movieId === id)
+      await api.removeMovie(removedMovie._id);
+      setSavedMovies(movies => [...movies.filter((mov) => mov.movieId !== id)]);
+      setSavedMoviesFiltered(movies => [...movies.filter((mov) => mov.movieId !== id)])
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // Восстанавливаем данные поиска при загрузке приложения
+  useEffect(() => {
+    const savedSearch = localStorage.getItem('foundMovies');
+    if (savedSearch) {
+      const parsedData = JSON.parse(savedSearch);
+      setFoundMovies(parsedData);
+    }
+  }, []);
+
+  // Сохраняем фильмы в хранилище сессии для их восстановления при перезагрузке страницы
+  useEffect(() => {
+    const initialStorage = sessionStorage.getItem('moviesStorage');
+    if (initialStorage) {
+      const parsedData = JSON.parse(initialStorage);
+      setMoviesList(parsedData);
+    }
+  }, [])
+
+  // Получаем список сохраненных фильмов
+  useEffect(() => {
+    if (isLoggedIn) {
+      getSavedMovies();
+    }
+  }, [isLoggedIn])
+
   // Фильтрация фильмов по запросу с приведением к нижнему регистру для сравнения независимо от регистра ввода
   const filterMovies = (movies, query, isShortToggle) => {
     return movies.filter(({ nameRU, nameEN, duration }) => {
@@ -191,10 +269,16 @@ function App() {
     setFoundMoviesToggleFiltered(movies);
   };
 
+  const filterSavedMoviesByToggle = (query, isShortFilmToggle) => {
+    if (savedMovies.length === 0) return;
+    const filteredMovies = filterMovies(savedMovies, query, isShortFilmToggle);
+    setSavedMoviesFiltered(filteredMovies);
+  };
+
   // Поиск фильмов
-  const searchMovies = async (queryText, isShortToggle) => {
+  const searchMovies = async (query, isShortToggle) => {
     setIsFirstSearch(false);
-    localStorage.setItem('queryText', queryText);
+    localStorage.setItem('queryText', query);
     localStorage.setItem('shortFilmsToggle', isShortToggle);
     let movies;
     if (moviesList.length === 0) {
@@ -203,12 +287,19 @@ function App() {
     } else {
       movies = moviesList;
     }
-    const filteredMovies = filterMovies(movies, queryText);
+    const filteredMovies = filterMovies(movies, query);
     setFoundMovies(filteredMovies);
-    const filteredMoviesWithToggle = filterMovies(filteredMovies, queryText, isShortToggle);
+    const filteredMoviesWithToggle = filterMovies(filteredMovies, query, isShortToggle);
     setFoundMoviesToggleFiltered(filteredMoviesWithToggle);
     localStorage.setItem('foundMovies', JSON.stringify(filteredMovies));
   }
+
+  // Поиск cохраненных фильмов
+  const searchSavedMovies = (query, isShortFilmToggle) => {
+    const filteredMovies = filterMovies(savedMovies, query, isShortFilmToggle);
+    setSavedMoviesFiltered(filteredMovies);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -220,14 +311,23 @@ function App() {
               <Route element={<ProtectedRoutes condition={isLoggedIn} redirectPath='/' />} >
                 <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout} error={errorMessage} resultMessage={resultMessage} />} />
                 <Route path='/movies'
-                  element={<Movies movies={visibleFoundMovies}
-                  onSearch={searchMovies}
-                  isInRequest={isInRequest}
-                  isFirstSearch={isFirstSearch}
-                  onShowMore={showMoreMovies}
-                  onToggle={filterMoviesByToggle}
-                  moreMoviesExist={visibleFoundMovies.length === foundMoviesToggleFiltered.length}/>} />
-                <Route path='/saved-movies' element={<SavedMovies />} />
+                  element={<Movies movies={showSavedMovies(visibleFoundMovies)}
+                    onSearch={searchMovies}
+                    isInRequest={isInRequest}
+                    isFirstSearch={isFirstSearch}
+                    onShowMore={showMoreMovies}
+                    onToggle={filterMoviesByToggle}
+                    onSaveMovie={saveMovie}
+                    onDeleteMovie={deleteMovie}
+                    moreMoviesExist={visibleFoundMovies.length === foundMoviesToggleFiltered.length}/>} />
+                <Route path='/saved-movies'
+                  element={<SavedMovies
+                    movies={savedMoviesFiltered.map(movie => ({ ...movie, type: 'remove' }))}
+                    onDeleteMovie={deleteMovie}
+                    onSearch={searchSavedMovies}
+                    isInRequest={isInRequest}
+                    onToggle={filterSavedMoviesByToggle}
+                    savedMoviesExist={savedMovies.length} />} />
               </Route>
               <Route path='*' element={<PageNotFound />} />
             </Routes>

@@ -3,16 +3,15 @@ import { useLocation } from 'react-router-dom';
 import './MovieCard.css';
 
 function MovieCard ({
+  movieId,
   title,
   duration,
   imageSource,
   trailerLink,
   onSaveMovie,
-  onRemoveMovie,
+  onDeleteMovie,
   type = 'default',
 }) {
-  let location = useLocation();
-  const [isSaved, setIsSaved] = useState(false)
 
   const normalizedDuration = useMemo(() => {
     const minutes = duration % 60;
@@ -20,19 +19,27 @@ function MovieCard ({
     return hours ? `${hours}ч ${minutes}м` : `${minutes}м`;
   }, [duration]);
 
-  if (location.pathname === '/saved-movies') {
-    type='remove'
-  } else {
-    type='liked'
+  const handleSave = (id) => {
+    onSaveMovie(id)
   }
 
-  const cardLikeButtonClassName = (
-    `movie-card__action-btn${isSaved ? ` movie-card__action-btn_type_${type}`: ''}`
-  );
+  const handleDelete = (id) => {
+    onDeleteMovie(id)
+  }
+
+ let cardState = type;
+ let cardClassName = `movie-card__action-btn movie-card__action-btn_type_${cardState}`
 
   const onButtonClick = () => {
-    setIsSaved(v => !v)
+    if (cardState === 'liked' || cardState === 'remove') {
+      handleDelete(movieId);
+      cardState = 'default';
+    } else {
+      handleSave(movieId);
+      cardState = 'liked';
+    }
   }
+
 
   return (
     <li className='movie-card'>
@@ -43,7 +50,7 @@ function MovieCard ({
       <button
         type='button'
         onClick={onButtonClick}
-        className={cardLikeButtonClassName}
+        className={cardClassName}
       />
       <span className='movie-card__duration'>{normalizedDuration}</span>
     </li>
