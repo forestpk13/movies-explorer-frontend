@@ -19,6 +19,14 @@
   border: 1px solid #424242;
 }
 
+.movies__search-message {
+  margin: 0;
+  text-align: center;
+  font-family: Inter;
+  color:  var(--textcolor-grey);
+  font-size: 25px;
+}
+
 @media screen and (max-width: 989px) {
   .movies {
     padding: 79px 30px 99px 30px;

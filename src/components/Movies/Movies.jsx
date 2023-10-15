@@ -4,7 +4,7 @@ import MovieCardsList from '../MovieCardsList/MovieCardsList';
 import Preloader from '../Preloader/Preloader';
 import './Movies.css';
 
-function Movies ({ movies, onSearch, isInRequest, onShowMore, moreMoviesExist, onToggle }) {
+function Movies ({ movies, onSearch, isInRequest, isFirstSearch, onShowMore, moreMoviesExist, onToggle }) {
   const [value, setValue] = useState(
     localStorage.getItem('queryText') || ''
   );
@@ -60,6 +60,9 @@ function Movies ({ movies, onSearch, isInRequest, onShowMore, moreMoviesExist, o
         />}
       {(!isInRequest && moviesExist && !moreMoviesExist) &&
         <button type='button' onClick={onShowMore} className='movies__load-btn'>Ещё</button>}
+      {(!isInRequest && !moviesExist) &&
+        <p className='movies__search-message'>{isFirstSearch ? 'Введите запрос, чтобы найти фильмы' : 'По вашему запросу фильмов не найдено'}</p>
+      }
     </main>
   );
 };

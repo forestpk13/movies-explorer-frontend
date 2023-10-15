@@ -29,6 +29,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [resultMessage, setResultMessage] = useState('');
   const [isInRequest, setIsInRequest] = useState(false);
+  const [isFirstSearch, setIsFirstSearch] = useState(true);
   const [moviesList, setMoviesList] = useState([]); // Полный список, возвращаемый при запросе на api BeatFilms
   const [foundMovies, setFoundMovies] = useState([]); // Список фильмов, отфильтрованный по запросу в инпуте
   const [foundMoviesToggleFiltered, setFoundMoviesToggleFiltered] = useState([]); // Список фильмов, отфильтрованный по запросу в инпуте с учетам тоггла "Короткометражки"
@@ -127,6 +128,7 @@ function App() {
   const deleteAllSessionData = () => {
     setIsLoggedIn(false);
     setCurrentUser(null);
+    setIsFirstSearch(true);
 
     setMoviesList([]);
     setFoundMovies([]);
@@ -191,6 +193,7 @@ function App() {
 
   // Поиск фильмов
   const searchMovies = async (queryText, isShortToggle) => {
+    setIsFirstSearch(false);
     localStorage.setItem('queryText', queryText);
     localStorage.setItem('shortFilmsToggle', isShortToggle);
     let movies;
@@ -220,6 +223,7 @@ function App() {
                   element={<Movies movies={visibleFoundMovies}
                   onSearch={searchMovies}
                   isInRequest={isInRequest}
+                  isFirstSearch={isFirstSearch}
                   onShowMore={showMoreMovies}
                   onToggle={filterMoviesByToggle}
                   moreMoviesExist={visibleFoundMovies.length === foundMoviesToggleFiltered.length}/>} />
