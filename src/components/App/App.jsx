@@ -337,7 +337,7 @@ function App() {
                   element={<SavedMovies
                     movies={savedMoviesFiltered.map(movie => ({ ...movie, type: 'remove' }))}
                     onDeleteMovie={deleteMovie}
-                    onSearch={test}
+                    onSearch={searchSavedMovies}
                     isInRequest={isInRequest}
                     onToggle={filterSavedMoviesByToggle}
                     savedMoviesExist={savedMovies.length} />} />
