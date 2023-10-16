@@ -1,24 +1,32 @@
 .movie-cards {
   list-style: none;
   display: grid;
-  flex-wrap: wrap;
   margin-top: 117px;
   margin-bottom: 80px;
   padding: 0;
   width: 100%;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(4, 23.6%);
   gap: 32px 20px;
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1180px) {
   .movie-cards {
+    grid-template-columns: repeat(3, 31.4%);
     margin-top: 126px;
     margin-bottom: 80px;
     gap: 36px 30px;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .movie-cards {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 80px;
+  }
+}
+
 
 @media screen and (max-width: 687px) {
   .movie-cards {

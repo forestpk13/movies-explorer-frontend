@@ -49,15 +49,21 @@ function App() {
   const calculateCardsAmount = () => {
     const pageWidth = document.documentElement.clientWidth;
     if (pageWidth > 1180) {
-      setCardsAmount({ initial: 12, additional: 4, row: 4 });
+      setCardsAmount({ initial: 16, additional: 4, row: 4 });
       return
     }
-    if (pageWidth > 720) {
+    if (pageWidth > 900) {
+      setCardsAmount({ initial: 12, additional: 3, row: 3 });
+      return
+    }
+    if (pageWidth > 420) {
       setCardsAmount({ initial: 8, additional: 2, row: 2 });
       return
     }
     setCardsAmount({ initial: 5, additional: 2, row: 1 });
   };
+
+
 
   const debouncedCalculateAmount = debounce(calculateCardsAmount, 200);
 
@@ -67,10 +73,17 @@ function App() {
       return () => window.removeEventListener('resize', debouncedCalculateAmount);
     }, []);
 
+    // Изменяю количество карточек на начальное при каждом поиске
     useEffect(() => {
       let shownMovies = foundMoviesToggleFiltered.slice(0, cardsAmount.initial);
       setVisibleFoundMovies(shownMovies);
     }, [foundMoviesToggleFiltered])
+
+    // Изменяю количество карточек на начальное при каждой смене cardsAmount.initial (триггерится ресайзом ширины экрана)
+    useEffect(() => {
+      let shownMovies = foundMoviesToggleFiltered.slice(0, cardsAmount.initial);
+      setVisibleFoundMovies(shownMovies);
+    }, [cardsAmount.initial])
 
     const showMoreMovies = () => {
       const sliceStart = visibleFoundMovies.length;
