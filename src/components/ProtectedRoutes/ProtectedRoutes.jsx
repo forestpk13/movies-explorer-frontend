@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-function ProtectedRoutes({ condition, redirectPath = '/' }) {
+function ConditionalRoutes({ condition, redirectPath = '/' }) {
 
   return condition
     ? <Outlet />
     : <Navigate to={redirectPath} />
 }
 
-export default ProtectedRoutes;
+export default ConditionalRoutes;

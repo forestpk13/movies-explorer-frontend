@@ -13,6 +13,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import api from '../../utils/MainApi'
 import moviesApi from '../../utils/MoviesApi';
+import Preloader from '../Preloader/Preloader';
 import { debounce } from '../../utils/utils';
 import {
   pagesWithHeader,
@@ -23,6 +24,7 @@ import './App.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
+  const [appLoading, setAppLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -123,6 +125,7 @@ function App() {
 
   // Логируем пользователя при загрузке приложения
   const getUser = async () => {
+    setAppLoading(true)
     try {
       const user = await api.getOwnProfile()
       if (user.email) {
@@ -133,6 +136,7 @@ function App() {
       setErrorMessage(err.message);
       setTimeout(() => setErrorMessage(''), 3000);
     }
+    setAppLoading(false)
   };
 
   useEffect(() => {
@@ -317,35 +321,40 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-            {isPageWithHeader && <Header />}
-            <Routes>
-              <Route path='/' element={<Landing />} />
-              <Route path='/signup' element={<Register onSubmit={handleRegister} currentUser={currentUser}/>} />
-              <Route path='/signin' element={<Login onSubmit={handleLogin} currentUser={currentUser} />} />
-              <Route element={<ProtectedRoutes condition={isLoggedIn} redirectPath='/' />} >
-                <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout} error={errorMessage} resultMessage={resultMessage} />} />
-                <Route path='/movies'
-                  element={<Movies movies={showSavedMovies(visibleFoundMovies)}
-                    onSearch={searchMovies}
-                    isInRequest={isInRequest}
-                    isFirstSearch={isFirstSearch}
-                    onShowMore={showMoreMovies}
-                    onToggle={filterMoviesByToggle}
-                    onSaveMovie={saveMovie}
-                    onDeleteMovie={deleteMovie}
-                    moreMoviesExist={visibleFoundMovies.length === foundMoviesToggleFiltered.length}/>} />
-                <Route path='/saved-movies'
-                  element={<SavedMovies
-                    movies={savedMoviesFiltered.map(movie => ({ ...movie, type: 'remove' }))}
-                    onDeleteMovie={deleteMovie}
-                    onSearch={searchSavedMovies}
-                    isInRequest={isInRequest}
-                    onToggle={filterSavedMoviesByToggle}
-                    savedMoviesExist={savedMovies.length} />} />
-              </Route>
-              <Route path='*' element={<PageNotFound />} />
-            </Routes>
-            {isPageWithFooter && <Footer />}
+        {appLoading ? <Preloader/> : (
+          <>
+         {isPageWithHeader && <Header />}
+         <Routes>
+           <Route path='/' element={<Landing />} />
+           <Route path='/signup' element={<Register onSubmit={handleRegister} currentUser={currentUser}/>} />
+           <Route path='/signin' element={<Login onSubmit={handleLogin} currentUser={currentUser} />} />
+           <Route element={<ProtectedRoutes condition={isLoggedIn}/>} >
+             {console.log(isLoggedIn)}
+             <Route path='/profile' element={<Profile onSubmit={changeUserInfo} onLogout={handleLogout} error={errorMessage} resultMessage={resultMessage} />} />
+             <Route path='/movies'
+               element={<Movies movies={showSavedMovies(visibleFoundMovies)}
+                 onSearch={searchMovies}
+                 isInRequest={isInRequest}
+                 isFirstSearch={isFirstSearch}
+                 onShowMore={showMoreMovies}
+                 onToggle={filterMoviesByToggle}
+                 onSaveMovie={saveMovie}
+                 onDeleteMovie={deleteMovie}
+                 moreMoviesExist={visibleFoundMovies.length === foundMoviesToggleFiltered.length}/>} />
+             <Route path='/saved-movies'
+               element={<SavedMovies
+                 movies={savedMoviesFiltered.map(movie => ({ ...movie, type: 'remove' }))}
+                 onDeleteMovie={deleteMovie}
+                 onSearch={searchSavedMovies}
+                 isInRequest={isInRequest}
+                 onToggle={filterSavedMoviesByToggle}
+                 savedMoviesExist={savedMovies.length} />} />
+           </Route>
+           <Route path='*' element={<PageNotFound />} />
+         </Routes>
+         {isPageWithFooter && <Footer />}
+         </>
+        )}
       </div>
       </CurrentUserContext.Provider>
   );
