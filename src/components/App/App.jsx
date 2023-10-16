@@ -169,15 +169,6 @@ function App() {
     }
   };
 
-  const test = () => {
-    console.log(savedMoviesFiltered);
-    console.log(savedMovies);
-    setSavedMovies([]);
-    setSavedMoviesFiltered([]);
-    console.log(savedMoviesFiltered);
-    console.log(savedMovies);
-  }
-
   // Получение полного списка фильмов при запросе на api BeatFilms
   const getMovies = async () => {
     setIsInRequest(true);
@@ -275,16 +266,13 @@ function App() {
     })
   };
 
+  // По заданию требуется, чтобы фильтрация по тогглу была идентична алгоритму при сабмите, поэтому просто вызываю функциии, которые используются при сабмите
   const filterMoviesByToggle = (query, isShortToggle) => {
-    if (foundMovies.length === 0) return;
-    const movies = filterMovies(foundMovies, query, isShortToggle);
-    setFoundMoviesToggleFiltered(movies);
+    searchMovies(query, isShortToggle);
   };
 
-  const filterSavedMoviesByToggle = (query, isShortFilmToggle) => {
-    if (savedMovies.length === 0) return;
-    const filteredMovies = filterMovies(savedMovies, query, isShortFilmToggle);
-    setSavedMoviesFiltered(filteredMovies);
+  const filterSavedMoviesByToggle = (query, isShortToggle) => {
+    searchSavedMovies(query, isShortToggle);
   };
 
   // Поиск фильмов
@@ -306,10 +294,10 @@ function App() {
     localStorage.setItem('foundMovies', JSON.stringify(filteredMovies));
   }
 
-  // Поиск cохраненных фильмов
-  const searchSavedMovies = (query, isShortFilmToggle) => {
-    localStorage.setItem('savedShortFilmsToggle', isShortFilmToggle);
-    const filteredMovies = filterMovies(savedMovies, query, isShortFilmToggle);
+  // Поиск cохраненных фильмов. Согласно заданию: Сохранять данные поиска на странице «Сохранённые фильмы» в localStorage не требуется. При переходе пользователя на страницу сохранённых фильмов ему должны быть отображены все его фильмы.
+  const searchSavedMovies = (query, isShortToggle) => {
+    localStorage.setItem('savedShortFilmsToggle', isShortToggle);
+    const filteredMovies = filterMovies(savedMovies, query, isShortToggle);
     setSavedMoviesFiltered(filteredMovies);
   }
 
