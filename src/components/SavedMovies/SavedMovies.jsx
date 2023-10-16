@@ -5,12 +5,12 @@ import Preloader from '../Preloader/Preloader';
 import './SavedMovies.css';
 
 function SavedMovies ({ movies, onDeleteMovie, onSearch, isInRequest, onToggle, savedMoviesExist, }) {
-  const [shortFilmsToggle, setShortFilmsToggle] = useState(false);
+  const [shortFilmsToggle, setShortFilmsToggle] = useState(
+    JSON.parse(localStorage.getItem('savedShortFilmsToggle')) || false
+  );
   const [validationMessage, setValidationMessage] = useState('');
 
-  const [value, setValue] = useState(
-    localStorage.getItem('queryText') || ''
-  );
+  const [value, setValue] = useState('');
 
   const handleToggle = () => {
     setShortFilmsToggle(v => !v);

@@ -126,25 +126,6 @@ function App() {
     getUser();
   }, []);
 
-  // Удаляем все данные, которые сгенерил пользователь за сессию
-  const deleteAllSessionData = () => {
-    setIsLoggedIn(false);
-    setCurrentUser(null);
-    setIsFirstSearch(true);
-    setMoviesList([]);
-    setFoundMovies([]);
-    setVisibleFoundMovies([]);
-    setFoundMoviesToggleFiltered([]);
-    setSavedMovies([]);
-    console.log(savedMovies);
-    setSavedMoviesFiltered([]);
-    localStorage.removeItem('queryText');
-    localStorage.removeItem('shortFilmsToggle');
-    localStorage.removeItem('foundMovies');
-    sessionStorage.removeItem('moviesStorage');
-    navigate('/');
-  }
-
   const changeUserInfo = async (userData) => {
     try {
       const user = await api.updateOwnProfile(JSON.stringify(userData))
@@ -157,6 +138,28 @@ function App() {
     }
   }
 
+  // Удаляем все данные, которые сгенерил пользователь за сессию
+  const deleteAllSessionData = () => {
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    setIsFirstSearch(true);
+
+    setMoviesList([]);
+    setFoundMovies([]);
+    setVisibleFoundMovies([]);
+    setFoundMoviesToggleFiltered([]);
+
+    setSavedMovies([]);
+    setSavedMoviesFiltered([]);
+
+    console.log(savedMoviesFiltered)
+    localStorage.removeItem('queryText');
+    localStorage.removeItem('shortFilmsToggle');
+    localStorage.removeItem('savedShortFilmsToggle');
+    localStorage.removeItem('foundMovies');
+    sessionStorage.removeItem('moviesStorage');
+  }
+
   const handleLogout = async () => {
     try {
       await api.logout();
@@ -165,6 +168,15 @@ function App() {
       console.log(err.message);
     }
   };
+
+  const test = () => {
+    console.log(savedMoviesFiltered);
+    console.log(savedMovies);
+    setSavedMovies([]);
+    setSavedMoviesFiltered([]);
+    console.log(savedMoviesFiltered);
+    console.log(savedMovies);
+  }
 
   // Получение полного списка фильмов при запросе на api BeatFilms
   const getMovies = async () => {
@@ -296,6 +308,7 @@ function App() {
 
   // Поиск cохраненных фильмов
   const searchSavedMovies = (query, isShortFilmToggle) => {
+    localStorage.setItem('savedShortFilmsToggle', isShortFilmToggle);
     const filteredMovies = filterMovies(savedMovies, query, isShortFilmToggle);
     setSavedMoviesFiltered(filteredMovies);
   }
@@ -324,7 +337,7 @@ function App() {
                   element={<SavedMovies
                     movies={savedMoviesFiltered.map(movie => ({ ...movie, type: 'remove' }))}
                     onDeleteMovie={deleteMovie}
-                    onSearch={searchSavedMovies}
+                    onSearch={test}
                     isInRequest={isInRequest}
                     onToggle={filterSavedMoviesByToggle}
                     savedMoviesExist={savedMovies.length} />} />
