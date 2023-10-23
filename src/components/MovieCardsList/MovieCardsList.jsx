@@ -1,9 +1,8 @@
 import MovieCard from '../MovieCard/MovieCard';
-import { moviesListTemp } from '../../utils/constants';
 import './MovieCardsList.css';
 
-const MovieCardsList = ({ onSaveMovie, onRemoveMovie }) => {
-  const moviesComponents = moviesListTemp.map(({
+const MovieCardsList = ({ onSaveMovie, onDeleteMovie, movies }) => {
+  const moviesComponents = movies.map(({
     movieId,
     nameRU,
     duration,
@@ -17,7 +16,7 @@ const MovieCardsList = ({ onSaveMovie, onRemoveMovie }) => {
       duration={duration}
       trailerLink={trailerLink}
       onSaveMovie={onSaveMovie}
-      onRemoveMovie={onRemoveMovie}
+      onDeleteMovie={onDeleteMovie}
       movieId={movieId}
       key={movieId}
       type={type}

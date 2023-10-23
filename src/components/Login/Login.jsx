@@ -1,12 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react';
 import UserPage from '../UserPage/UserPage';
 import Form from '../Form/Form';
 
-function Login ({ onSubmit }) {
+function Login ({ onSubmit, currentUser }) {
   const texts = {
     heading: 'Рады видеть!',
     caption: 'Еще не зарегистрированы?',
     buttonText: 'Регистрация'
   }
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      navigate('/');
+    }
+  }, [currentUser])
 
   return (
     <main className='login'>

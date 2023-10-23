@@ -1,8 +1,8 @@
 import './SearchPanel.css';
 
 function SearchPanel({
-  onSearch,
   value,
+  validationMessage,
   onChange,
   onToggle,
   isToggle,
@@ -25,6 +25,7 @@ function SearchPanel({
           className='search-panel__input'
           value={value}
           onChange={onChange}
+          required
           {...restProps}
         />
         <button
@@ -32,6 +33,7 @@ function SearchPanel({
           className='search-panel__button'>
         </button>
       </div>
+      <span className='search-panel__error'>{validationMessage}</span>
       <div className='search-panel__toggle'>
         <label className='search-panel__toggle-label' htmlFor='short-films'>
           <input

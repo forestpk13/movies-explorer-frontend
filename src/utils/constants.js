@@ -1,7 +1,8 @@
 export const pagesWithHeader = ['/', '/movies', '/saved-movies', '/profile'];
 export const pagesWithFooter = ['/', '/movies', '/saved-movies'];
 
-export const EMAIL_REGEXP = '[A-z0-9_.-]{1,}@[A-z0-9_.-]{1,}[.][A-z]{2,6}';
+export const EMAIL_REGEXP = '[a-zA-Z0-9_.\\-]{1,}@[a-zA-Z0-9_.\\-]{1,}\\.[a-zA-Z]{2,6}';
+export const NAME_REGEXP =  '[a-zA-Zа-яА-Я\\s\\-]+';
 
 export const moviesListTemp = [
   {

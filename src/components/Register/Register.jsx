@@ -1,12 +1,22 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import UserPage from '../UserPage/UserPage';
 import Form from '../Form/Form';
 
-function Register({ onSubmit }) {
+function Register({ onSubmit, currentUser }) {
   const texts = {
     heading: 'Добро пожаловать!',
     caption: 'Уже зарегистрированы?',
     buttonText: 'Войти'
   }
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      navigate('/');
+    }
+  }, [currentUser])
 
   return (
     <main className='register'>

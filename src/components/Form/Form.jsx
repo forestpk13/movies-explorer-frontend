@@ -1,15 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect, useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import FormInput from '../FormInput/FormInput';
-import { EMAIL_REGEXP } from '../../utils/constants';
+import { EMAIL_REGEXP, NAME_REGEXP } from '../../utils/constants';
 import useValidationOfForm from '../../utils/hooks/useValidationOfForm';
 import './Form.css';
 
 
-function Form({ onSubmit, page }) {
+function Form({ onSubmit, page, error, resultMessage }) {
+  const [isUserInfoUpdated, setIsUserInfoUpdated] = useState(false);
+  const currentUser = useContext(CurrentUserContext);
   const {
     values,
     errors,
     isValid,
     onChange,
+    resetForm
   } = useValidationOfForm();
 
   const buttonTextCheck = page === 'login'
@@ -27,6 +33,18 @@ function Form({ onSubmit, page }) {
     onSubmit(values);
   }
 
+  useEffect(() => {
+    if (isProfilePage && (values.name !== currentUser.name || values.email !== currentUser.email)) {
+      setIsUserInfoUpdated(true);
+    } else {
+      setIsUserInfoUpdated(false);
+    }
+  }, [values?.name, values?.email]);
+
+  useEffect(() => {
+    resetForm({ name: currentUser?.name, email: currentUser?.email });
+  }, [currentUser])
+
   return (
     <form className={`form`} onSubmit={handleSubmit}>
       <fieldset className='form__fields'>
@@ -38,6 +56,7 @@ function Form({ onSubmit, page }) {
         title='Имя'
         type='text'
         isProfilePage={isProfilePage}
+        pattern={NAME_REGEXP}
         required
         minLength='3'
       />}
@@ -60,13 +79,16 @@ function Form({ onSubmit, page }) {
         title='Пароль'
         type='password'
         isProfilePage={isProfilePage}
-        minLength='6'
+        minLength='8'
         required
       />}
 
       </fieldset>
       <div className='form__button-container'>
-          <button className={`form__submit-button ${isProfilePage && 'form__submit-button_page_profile'}`} type='submit' disabled={!isValid}>{isProfilePage ? 'Редактировать' : buttonTextCheck.text}</button>
+          <span className={`form__message ${error && 'form__message_type_error'}`}>
+            {resultMessage || error}
+          </span>
+          <button className={`form__submit-button ${isProfilePage && 'form__submit-button_page_profile'}`} type='submit' disabled={!isValid || isProfilePage && !isUserInfoUpdated}>{isProfilePage ? 'Редактировать' : buttonTextCheck.text}</button>
       </div>
     </form>
   )
